@@ -1,17 +1,8 @@
 import { PrismaClient } from "@prisma/client";
-import { Pool, neonConfig } from "@neondatabase/serverless";
-import { PrismaNeon } from "@prisma/adapter-neon";
-import ws from "ws";
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
-
-// Configure WebSocket for Neon - only in non-Netlify environments
-// Netlify's serverless functions don't support the ws package
-if (!process.env.NETLIFY && typeof WebSocket === "undefined") {
-  neonConfig.webSocketConstructor = ws;
-}
 
 function createPrismaClient() {
   // Check if DATABASE_URL is set
