@@ -1,6 +1,10 @@
 import { prisma } from "@/lib/prisma";
 import { formatDistanceToNow } from "date-fns";
 
+// Force dynamic rendering - no caching
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
+
 async function getStats() {
   try {
     const [userCount, threadCount, messageCount] = await Promise.all([
