@@ -12,10 +12,25 @@ export interface CreateMessageInput {
 /**
  * Upsert a user with enrichment
  * Now also refreshes profile data on every call (not just creation)
+ * Facebook enrichment is NON-BLOCKING - if it fails, user is still created
  */
 export async function upsertUser(ssid: string) {
-  // Enrich user data from Facebook Graph API
-  const enrichedData = await FacebookProfileService.enrichUser(ssid);
+  // Try to enrich user data from Facebook Graph API
+  let enrichedData;
+  try {
+    console.log(`[DB] Attempting to enrich user ${ssid} from Facebook API`);
+    enrichedData = await FacebookProfileService.enrichUser(ssid);
+    console.log(`[DB] Successfully enriched user ${ssid}`);
+  } catch (error) {
+    console.error(`[DB] Failed to enrich user ${ssid} from Facebook API:`, error);
+    console.log(`[DB] Creating user ${ssid} with fallback data`);
+    // Fallback data if enrichment fails
+    enrichedData = {
+      firstName: "User",
+      lastName: ssid.substring(0, 8),
+      profilePic: null,
+    };
+  }
 
   // Use Prisma's upsert to avoid race conditions
   const user = await prisma.user.upsert({

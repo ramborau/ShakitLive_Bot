@@ -83,6 +83,14 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
+    // Log environment status (once per request)
+    console.log("[Generic Webhook] ===== NEW WEBHOOK REQUEST =====");
+    console.log("[Generic Webhook] Environment check:");
+    console.log("  - DATABASE_URL:", process.env.DATABASE_URL ? "SET" : "MISSING");
+    console.log("  - FACEBOOK_PAGE_ACCESS_TOKEN:", process.env.FACEBOOK_PAGE_ACCESS_TOKEN ? "SET" : "MISSING");
+    console.log("  - NETLIFY:", process.env.NETLIFY || "false");
+    console.log("  - NODE_ENV:", process.env.NODE_ENV);
+
     const body: GenericWebhookPayload = await request.json();
 
     console.log("[Generic Webhook] Received webhook event");
@@ -91,20 +99,28 @@ export async function POST(request: NextRequest) {
     // Handle different webhook formats
     if (body.object === "page" && body.entry) {
       // Facebook/Messenger format
+      console.log("[Generic Webhook] Processing as Facebook format");
       await handleFacebookFormat(body);
     } else if (body.entry && Array.isArray(body.entry)) {
       // Generic entry-based format
+      console.log("[Generic Webhook] Processing as generic format");
       await handleGenericFormat(body);
     } else {
       // Direct message format
+      console.log("[Generic Webhook] Processing as direct message format");
       await handleDirectMessage(body);
     }
 
+    console.log("[Generic Webhook] ===== REQUEST COMPLETED SUCCESSFULLY =====");
     return NextResponse.json({ status: "success" }, { status: 200 });
   } catch (error) {
+    console.error("[Generic Webhook] ===== CRITICAL ERROR =====");
     console.error("[Generic Webhook] Error processing webhook:", error);
+    console.error("[Generic Webhook] Error stack:", error instanceof Error ? error.stack : "No stack trace");
+    console.error("[Generic Webhook] Error message:", error instanceof Error ? error.message : String(error));
+    console.error("[Generic Webhook] ============================");
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Internal server error", details: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }
@@ -180,21 +196,31 @@ async function handleMessagingEvent(event: GenericMessage): Promise<void> {
     if (event.message?.text) {
       console.log(`[Generic Webhook] Text message from ${senderSsid}: ${event.message.text}`);
 
-      // Get or create thread
-      const thread = await findOrCreateThread(senderSsid);
+      try {
+        // Get or create thread
+        console.log("[Generic Webhook] Finding or creating thread...");
+        const thread = await findOrCreateThread(senderSsid);
+        console.log(`[Generic Webhook] Thread ${thread.id} ready`);
 
-      // Save user message
-      await createMessage({
-        senderSsid,
-        content: event.message.text,
-        messageType: "text",
-        metadata: {
-          mid: event.message.mid,
-          timestamp: event.timestamp,
-        },
-      });
+        // Save user message
+        console.log("[Generic Webhook] Saving message to database...");
+        await createMessage({
+          senderSsid,
+          content: event.message.text,
+          messageType: "text",
+          metadata: {
+            mid: event.message.mid,
+            timestamp: event.timestamp,
+          },
+        });
 
-      console.log("[Generic Webhook] Message saved to database");
+        console.log("[Generic Webhook] ✅ Message saved to database successfully");
+      } catch (dbError) {
+        console.error("[Generic Webhook] ❌ DATABASE ERROR - Message NOT saved:");
+        console.error("  Error:", dbError);
+        console.error("  Stack:", dbError instanceof Error ? dbError.stack : "No stack");
+        throw dbError; // Re-throw so webhook returns 500
+      }
 
       // Check for "clear" command - override all flows and reset all data
       if (event.message.text.trim().toLowerCase() === "clear") {
