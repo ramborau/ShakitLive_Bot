@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Shakey's SM Mall of Asia",
+    "address": "Ground Floor, SM Mall of Asia, Pasay City",
+    "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Shakey's+SM+Mall+of+Asia",
+    "phone": "02-8888-8888"
+  },
+  {
+    "id": 2,
+    "name": "Shakey's Greenbelt",
+    "address": "Greenbelt 3, Makati City",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Shakey's+Greenbelt+Makati",
+    "phone": "02-7777-7777"
+  },
+  {
+    "id": 3,
+    "name": "Shakey's Bonifacio Global City",
+    "address": "The Fort Strip, BGC, Taguig City",
+    "image": "https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=800",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Shakey's+BGC+Taguig",
+    "phone": "02-9999-9999"
+  },
+  {
+    "id": 4,
+    "name": "Shakey's Alabang Town Center",
+    "address": "2nd Floor, Alabang Town Center, Muntinlupa",
+    "image": "https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=800",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Shakey's+Alabang+Town+Center",
+    "phone": "02-6666-6666"
+  },
+  {
+    "id": 5,
+    "name": "Shakey's Trinoma",
+    "address": "Ground Floor, Trinoma Mall, Quezon City",
+    "image": "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800",
+    "googleMapsUrl": "https://www.google.com/maps/search/?api=1&query=Shakey's+Trinoma+Quezon+City",
+    "phone": "02-5555-5555"
+  }
+]

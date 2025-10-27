@@ -1,0 +1,274 @@
+{
+  "qaData": {
+    "english": [
+      {
+        "question": "What is the primary mission of the Shakey's Pizza Bot and what percentage of common queries is it designed to handle autonomously?",
+        "answer": "The Shakey's Pizza Bot's primary mission is to serve as the first line of customer engagement, designed to handle 70% or more of common queries autonomously while seamlessly escalating complex issues to human agents."
+      },
+      {
+        "question": "What are the specific core objectives for the Shakey's Pizza Bot regarding response time and intent classification accuracy?",
+        "answer": "The core objectives include providing a response time of less than 5 seconds for all queries and achieving an intent classification accuracy of 95% or higher."
+      },
+      {
+        "question": "Can you list the primary, secondary, and tertiary communication channels where the Shakey's Pizza Bot is supported or planned to be supported?",
+        "answer": "The primary supported channel is the Super App chat interface. Secondary channels are Facebook Messenger and the website chat widget. SMS integration is planned as a tertiary channel for the future."
+      },
+      {
+        "question": "According to the query distribution analysis, what are the top three most frequent types of customer inquiries and their respective percentages?",
+        "answer": "Based on the analysis, the top three most frequent inquiries are: Promotional Inquiries (35%), SuperCard Related queries (25%), and Delivery & Location checks (20%)."
+      },
+      {
+        "question": "For the UnionBank 50% off promotion, what are the exact terms regarding its validity for different ordering channels and any specific branch exclusions?",
+        "answer": "The UnionBank 50% off promo is valid for Dine-in and Carryout only. It is not valid for Delivery or Super App orders. The branch exclusions are NAIA Terminal 3, MCIA Terminals, and Enchanted Kingdom."
+      },
+      {
+        "question": "What is the minimum spend required for the ₱500 off app voucher, and what is one of the troubleshooting steps the bot suggests if it fails to apply?",
+        "answer": "The ₱500 off app voucher requires a minimum order of ₱1,000. One common reason for failure is not meeting this minimum spend, and the bot would suggest adding more items to the cart to qualify."
+      },
+      {
+        "question": "What are the prices for the Classic and Gold SuperCard tiers, and what is a key difference in their benefits regarding points earning?",
+        "answer": "The Classic SuperCard costs ₱699 and the Gold SuperCard costs ₱999. A key difference is that the Gold tier has a higher points earning rate compared to the Classic tier."
+      },
+      {
+        "question": "What is the specific policy for claiming the SuperCard welcome treat when the card is purchased online through the Super App?",
+        "answer": "The welcome treat for a SuperCard purchased online must be claimed at the physical branch where the card is first used or registered; it is not automatically available within the app."
+      },
+      {
+        "question": "If a customer's SuperCard birthday treat is showing as 'Unavailable' in October, but their birthday is in March, what reason will the bot provide?",
+        "answer": "The bot will explain that the birthday treat only activates during the registered birth month (March 1-31) and the customer is trying to claim it outside this eligibility window."
+      },
+      {
+        "question": "What is the recommended course of action for a group of 20 people wanting to dine in, and what specific details does the bot need to assist them?",
+        "answer": "For a group of 20, the bot highly recommends making a reservation in advance. To assist, the bot needs the customer's full name, mobile number, preferred date, time, and Shakey's branch."
+      },
+      {
+        "question": "What is the typical seating capacity of a Shakey's function room, and what might be required to accommodate a large party of 90 guests?",
+        "answer": "A typical function room accommodates 50-80 persons. For 90 guests, options might include a full restaurant booking, using multiple party areas, or finding a specific branch with a larger capacity."
+      },
+      {
+        "question": "If a customer's delivery address is found to be outside the serviceable trading area, what are the three alternative options the bot will suggest?",
+        "answer": "If an address is outside the delivery area, the bot will suggest: 1) Ordering for Carryout/Pickup from the nearest branch, 2) Checking third-party services like GrabFood or FoodPanda, or 3) Calling the hotline to double-check the exact delivery boundaries."
+      },
+      {
+        "question": "What is the official cancellation policy for an order placed via the bot, specifically regarding the time window for penalty-free cancellation?",
+        "answer": "Orders can be cancelled without penalty within 5 minutes of placement. After this window, cancellation may not be possible as the order is likely already in preparation."
+      },
+      {
+        "question": "What is the minimum purchase requirement to redeem the SuperCard birthday treat for a delivery order versus a dine-in order?",
+        "answer": "For a delivery order, a minimum purchase of ₱300 is required to redeem the birthday treat. For a dine-in order, there is no minimum purchase required."
+      },
+      {
+        "question": "When collecting personal information like a name and mobile number for a reservation, what specific compliance statement must the bot display?",
+        "answer": "The bot must display a Data Privacy Notice stating that the information will be used solely to process the request and will be kept secure according to the Data Privacy Act of 2012."
+      },
+      {
+        "question": "What are all eleven toppings listed for the Belly Buster pizza?",
+        "answer": "The Belly Buster pizza includes 11 toppings: beef, Italian sausage, pepperoni, ham, salami, salami bits, mushrooms, red & green bell pepper, onions, black olives, and cheddar cheese."
+      },
+      {
+        "question": "What is the price of the Monster Meal Deal, and what are all the items included in this bundle for 10-12 persons?",
+        "answer": "The Monster Meal Deal is priced at ₱3,749.00. It includes any two Large Thin Crust Pizzas, two Pasta Platters, a Party Pack of Chicken 'n' Mojos (12 pcs), and three 1.5L Coke bottles."
+      },
+      {
+        "question": "Can you detail the contents and price of the 'Bunch Of Lunch Original' combo meal?",
+        "answer": "The 'Bunch Of Lunch Original' is priced at ₱229.00 and includes a slice of Hawaiian Delight Hand Tossed Pizza, Chicken 'n' Mojos, Skilletti, and Garlic Bread."
+      },
+      {
+        "question": "What are the four types of cheese used in the Truffle Four Cheese pizza?",
+        "answer": "The Truffle Four Cheese pizza is topped with Mozzarella, Parmesan, Cheddar, and Cream Cheese."
+      },
+      {
+        "question": "What is the price of a Basket of Mojos and how many dips does it come with?",
+        "answer": "A Basket of Mojos costs ₱439.00 and includes a choice of two dips."
+      },
+      {
+        "question": "What is the price of the Supercard Gold and what is the welcome pizza that comes with it?",
+        "answer": "The Supercard Gold costs ₱999.00 and includes an upgraded Party Sized Welcome Pizza."
+      },
+      {
+        "question": "How much does a 'Solo Pack (3pcs Chix)' cost, and what does it contain?",
+        "answer": "The 'Solo Pack (3pcs Chix)' costs ₱449.00 and contains three pieces of juicy, flavor-packed fried chicken with mojos."
+      }
+    ],
+    "tagalog": [
+      {
+        "question": "Ano ang pangunahing misyon ng Shakey's Pizza Bot at anong porsyento ng mga karaniwang tanong ang kaya nitong sagutin nang kusa?",
+        "answer": "Ang pangunahing misyon ng Shakey's Pizza Bot ay magsilbing unang linya ng pakikipag-ugnayan sa customer, na idinisenyo upang sagutin ang 70% o higit pa ng mga karaniwang tanong nang kusa, habang maayos na inililipat ang mga kumplikadong isyu sa mga totoong ahente."
+      },
+      {
+        "question": "Ano ang mga tiyak na pangunahing layunin para sa Shakey's Pizza Bot patungkol sa bilis ng pagtugon at sa katumpakan ng pag-uuri ng intensyon?",
+        "answer": "Kasama sa mga pangunahing layunin ang pagbibigay ng tugon sa loob ng wala pang 5 segundo para sa lahat ng tanong at pagkamit ng 95% o mas mataas na katumpakan sa pag-uuri ng intensyon."
+      }
+    ],
+    "taglish": [
+      {
+        "question": "Ano ang primary mission ng Shakey's Pizza Bot at anong percentage ng mga common queries ang kaya niyang i-handle autonomously?",
+        "answer": "Ang primary mission ng Shakey's Pizza Bot ay maging first line of customer engagement, na kayang mag-handle ng 70% o higit pa ng mga common queries autonomously habang seamless na ine-escalate ang complex issues sa mga human agents."
+      }
+    ]
+  },
+  "faqData": {
+    "faqs": [
+      {
+        "id": 1,
+        "category": "Menu & Products",
+        "english": {
+          "question": "What are Shakey's signature items?",
+          "answer": "Our signature items include our world-famous Chicken 'N' Mojos, Manager's Choice Pizza (our #1 pizza!), and our delicious Mojos - those crispy, seasoned potato slices you know and love! We also have amazing pasta dishes like Carbonara Supreme and Skilletti."
+        },
+        "tagalog": {
+          "question": "Ano ang mga signature items ng Shakey's?",
+          "answer": "Ang aming signature items ay ang world-famous Chicken 'N' Mojos, Manager's Choice Pizza (ang aming #1 pizza!), at ang masarap na Mojos - yung crispy, seasoned potato slices na mahal ninyo! Mayroon din kaming amazing pasta dishes tulad ng Carbonara Supreme at Skilletti."
+        },
+        "taglish": {
+          "question": "Ano ang mga signature items ng Shakey's?",
+          "answer": "Yung aming signature items ay yung world-famous Chicken 'N' Mojos, Manager's Choice Pizza (our #1 pizza!), at yung super sarap na Mojos - those crispy, seasoned potato slices na favorite ninyo! May amazing pasta dishes din kami like Carbonara Supreme and Skilletti."
+        }
+      },
+      {
+        "id": 2,
+        "category": "Menu & Products",
+        "english": {
+          "question": "Do you have vegetarian options?",
+          "answer": "Yes! We offer several vegetarian pizzas including Truffle Four Cheese, Classic Cheese, Garlic N Cheese, and Creammmy Spinach. We also have salads and pasta options that can be made vegetarian."
+        },
+        "tagalog": {
+          "question": "Mayroon ba kayong vegetarian options?",
+          "answer": "Oo! May ilang vegetarian pizzas kami tulad ng Truffle Four Cheese, Classic Cheese, Garlic N Cheese, at Creammmy Spinach. May salads at pasta options din kami na pwedeng gawing vegetarian."
+        },
+        "taglish": {
+          "question": "May vegetarian options ba kayo?",
+          "answer": "Yes! May several vegetarian pizzas kami including Truffle Four Cheese, Classic Cheese, Garlic N Cheese, and Creammmy Spinach. May salads at pasta options din na pwedeng gawing vegetarian."
+        }
+      },
+      {
+        "id": 3,
+        "category": "Ordering & Delivery",
+        "english": {
+          "question": "How can I place an order?",
+          "answer": "You can order through our Super App, website, Facebook Messenger, or by calling our hotline. We offer Dine-in, Delivery, and Carryout options for your convenience!"
+        },
+        "tagalog": {
+          "question": "Paano ako makakapag-order?",
+          "answer": "Pwede kayong mag-order sa pamamagitan ng aming Super App, website, Facebook Messenger, o sa pag-tawag sa aming hotline. May Dine-in, Delivery, at Carryout options kami para sa inyong kaginhawahan!"
+        },
+        "taglish": {
+          "question": "Paano ako pwedeng mag-order?",
+          "answer": "You can order through our Super App, website, Facebook Messenger, or by calling our hotline. May Dine-in, Delivery, and Carryout options kami para sa convenience ninyo!"
+        }
+      },
+      {
+        "id": 4,
+        "category": "Ordering & Delivery",
+        "english": {
+          "question": "What is the minimum order for delivery?",
+          "answer": "The minimum order for delivery varies by branch and location. Generally, it's around ₱300-₱500. Please check with your nearest branch for specific details."
+        },
+        "tagalog": {
+          "question": "Ano ang minimum order para sa delivery?",
+          "answer": "Ang minimum order para sa delivery ay nag-iiba depende sa branch at lokasyon. Karaniwang nasa ₱300-₱500. Pakicheck sa pinakamalapit na branch para sa tiyak na detalye."
+        },
+        "taglish": {
+          "question": "Ano ang minimum order for delivery?",
+          "answer": "The minimum order for delivery varies by branch and location. Generally, nasa ₱300-₱500. Please check sa nearest branch ninyo for specific details."
+        }
+      },
+      {
+        "id": 5,
+        "category": "Ordering & Delivery",
+        "english": {
+          "question": "How long does delivery take?",
+          "answer": "Delivery typically takes 45-60 minutes, depending on your location and current order volume. We'll keep you updated on your order status!"
+        },
+        "tagalog": {
+          "question": "Gaano katagal ang delivery?",
+          "answer": "Ang delivery ay karaniwang tumatagal ng 45-60 minuto, depende sa inyong lokasyon at sa dami ng orders. Ire-update namin kayo sa status ng inyong order!"
+        },
+        "taglish": {
+          "question": "Gaano katagal ang delivery?",
+          "answer": "Delivery typically takes 45-60 minutes, depending sa location ninyo and sa current order volume. We'll keep you updated sa order status ninyo!"
+        }
+      },
+      {
+        "id": 6,
+        "category": "SuperCard",
+        "english": {
+          "question": "What is SuperCard?",
+          "answer": "SuperCard is our loyalty program! Get exclusive discounts, birthday treats, welcome pizzas, and earn points with every purchase. Available in Classic (₱699) and Gold (₱999) tiers."
+        },
+        "tagalog": {
+          "question": "Ano ang SuperCard?",
+          "answer": "Ang SuperCard ay aming loyalty program! Makakuha ng exclusive discounts, birthday treats, welcome pizzas, at kumita ng points sa bawat bili. Available sa Classic (₱699) at Gold (₱999) tiers."
+        },
+        "taglish": {
+          "question": "Ano ang SuperCard?",
+          "answer": "SuperCard is our loyalty program! You get exclusive discounts, birthday treats, welcome pizzas, and earn points with every purchase. Available sa Classic (₱699) and Gold (₱999) tiers."
+        }
+      },
+      {
+        "id": 7,
+        "category": "SuperCard",
+        "english": {
+          "question": "How do I activate my SuperCard?",
+          "answer": "You can activate your SuperCard through the Super App or at any Shakey's branch. Just provide your card number and basic details, and you're all set!"
+        },
+        "tagalog": {
+          "question": "Paano ko ia-activate ang aking SuperCard?",
+          "answer": "Pwede ninyong i-activate ang inyong SuperCard sa pamamagitan ng Super App o sa kahit anong Shakey's branch. Ibigay lang ang card number at basic details, at tapos na!"
+        },
+        "taglish": {
+          "question": "Paano ko pwedeng i-activate ang SuperCard ko?",
+          "answer": "You can activate your SuperCard through the Super App or sa any Shakey's branch. Just provide your card number and basic details, tapos na!"
+        }
+      },
+      {
+        "id": 8,
+        "category": "Promotions",
+        "english": {
+          "question": "What promotions are currently available?",
+          "answer": "We have ongoing promos like Family Meal Deals, Pizza 'N' Mojos Bundles, and special bank card offers. Check our app or website for the latest deals!"
+        },
+        "tagalog": {
+          "question": "Anong mga promo ang available ngayon?",
+          "answer": "May ongoing promos kami tulad ng Family Meal Deals, Pizza 'N' Mojos Bundles, at special bank card offers. Tingnan ang aming app o website para sa latest deals!"
+        },
+        "taglish": {
+          "question": "Anong mga promo ang available currently?",
+          "answer": "We have ongoing promos like Family Meal Deals, Pizza 'N' Mojos Bundles, and special bank card offers. Check our app or website for the latest deals!"
+        }
+      },
+      {
+        "id": 9,
+        "category": "Store Locations",
+        "english": {
+          "question": "How can I find the nearest Shakey's branch?",
+          "answer": "Use our Store Locator on the app or website! Just enter your location, and we'll show you the nearest branches with directions, contact info, and operating hours."
+        },
+        "tagalog": {
+          "question": "Paano ako makakahanap ng pinakamalapit na Shakey's branch?",
+          "answer": "Gamitin ang aming Store Locator sa app o website! Ilagay lang ang inyong lokasyon, at ipapakita namin ang pinakamalapit na branches kasama ang directions, contact info, at operating hours."
+        },
+        "taglish": {
+          "question": "Paano ako pwedeng makahanap ng nearest Shakey's branch?",
+          "answer": "Use our Store Locator sa app or website! Just enter your location, and we'll show you the nearest branches with directions, contact info, and operating hours."
+        }
+      },
+      {
+        "id": 10,
+        "category": "Store Locations",
+        "english": {
+          "question": "What are your operating hours?",
+          "answer": "Operating hours vary by branch. Most branches are open from 10AM to 10PM, but some mall locations follow mall hours. Please check with your specific branch."
+        },
+        "tagalog": {
+          "question": "Ano ang inyong operating hours?",
+          "answer": "Ang operating hours ay nag-iiba per branch. Karamihan ay bukas mula 10AM hanggang 10PM, pero ang ibang mall locations ay sumusunod sa mall hours. Pakicheck sa specific branch ninyo."
+        },
+        "taglish": {
+          "question": "Ano ang operating hours ninyo?",
+          "answer": "Operating hours vary by branch. Most branches are open from 10AM to 10PM, but some mall locations follow mall hours. Please check sa specific branch ninyo."
+        }
+      }
+    ]
+  }
+}

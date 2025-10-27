@@ -1,0 +1,119 @@
+{
+  "templates": [
+    {
+      "id": "welcome_template",
+      "name": "Welcome Template",
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [
+          {
+            "title": "Welcome!",
+            "subtitle": "We have the right hat for everyone.",
+            "image_url": "https://petersfancybrownhats.com/company_image.png",
+            "buttons": [
+              {
+                "type": "web_url",
+                "url": "https://petersfancybrownhats.com",
+                "title": "View Website"
+              },
+              {
+                "type": "postback",
+                "title": "Start Chatting",
+                "payload": "DEVELOPER_DEFINED_PAYLOAD"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "product_showcase",
+      "name": "Product Showcase",
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [
+          {
+            "title": "Check out our latest products!",
+            "subtitle": "Quality items at great prices",
+            "buttons": [
+              {
+                "type": "web_url",
+                "url": "https://example.com/products",
+                "title": "Browse Products"
+              },
+              {
+                "type": "web_url",
+                "url": "https://example.com/deals",
+                "title": "View Deals"
+              },
+              {
+                "type": "postback",
+                "title": "Contact Support",
+                "payload": "CONTACT_SUPPORT"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "order_confirmation",
+      "name": "Order Confirmation",
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [
+          {
+            "title": "Order Confirmed!",
+            "subtitle": "Your order #12345 has been confirmed and will be delivered soon.",
+            "buttons": [
+              {
+                "type": "web_url",
+                "url": "https://example.com/track",
+                "title": "Track Order"
+              },
+              {
+                "type": "postback",
+                "title": "View Details",
+                "payload": "VIEW_ORDER_DETAILS"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "help_menu",
+      "name": "Help Menu",
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [
+          {
+            "title": "How can we help you?",
+            "subtitle": "Choose an option below",
+            "buttons": [
+              {
+                "type": "postback",
+                "title": "Order Status",
+                "payload": "HELP_ORDER_STATUS"
+              },
+              {
+                "type": "postback",
+                "title": "Returns & Refunds",
+                "payload": "HELP_RETURNS"
+              },
+              {
+                "type": "web_url",
+                "url": "https://example.com/faq",
+                "title": "FAQ"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(uuid())
+  ssid         String    @unique // Facebook SSID (recipient_id)
+  firstName    String?
+  lastName     String?
+  profilePic   String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  messages     Message[]
+  threads      ThreadParticipant[]
+}
+
+model Thread {
+  id              String    @id @default(uuid())
+  lastActivity    DateTime  @default(now())
+  lastMessage     String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  // Conversation Flow Context
+  currentFlow     String?   // faq, order, location, promo, complaint, null
+  flowStep        String?   // Current step in the flow
+  flowData        String?   // JSON data for the current flow (cart, location search, etc.)
+  intent          String?   // Last detected intent
+  language        String    @default("en") // en, tl, taglish
+  needsHuman      Boolean   @default(false) // Escalation flag
+
+  messages        Message[]
+  participants    ThreadParticipant[]
+}
+
+model ThreadParticipant {
+  id        String   @id @default(uuid())
+  threadId  String
+  userId    String
+  createdAt DateTime @default(now())
+
+  thread    Thread   @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([threadId, userId])
+  @@index([threadId])
+  @@index([userId])
+}
+
+model Message {
+  id                String    @id @default(uuid())
+  threadId          String
+  senderSsid        String
+  content           String
+  messageType       String    @default("text") // text, template, image, etc.
+  isFromBot         Boolean   @default(false) // true if sent by bot, false if from user
+  timestamp         DateTime  @default(now())
+  enrichmentStatus  String    @default("pending") // pending, success, failed
+  metadata          String?   // JSON string for additional data
+  createdAt         DateTime  @default(now())
+
+  thread            Thread    @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  sender            User      @relation(fields: [senderSsid], references: [ssid])
+
+  @@index([threadId])
+  @@index([senderSsid])
+  @@index([timestamp])
+}
+
+model TokenLog {
+  id         String   @id @default(uuid())
+  token      String
+  generated  Int      // Unix timestamp
+  expiresAt  Int      // Unix timestamp
+  createdAt  DateTime @default(now())
+}
+
+model FAQ {
+  id             Int      @id @default(autoincrement())
+  faqId          Int      // Original FAQ ID from JSON
+  category       String
+  questionEn     String
+  answerEn       String
+  questionTl     String
+  answerTl       String
+  questionTag    String   // Taglish
+  answerTag      String   // Taglish
+  searchKeywords String?  // For faster searching
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([category])
+  @@index([faqId])
+}
+
+model QA {
+  id             Int      @id @default(autoincrement())
+  questionEn     String
+  answerEn       String
+  questionTl     String
+  answerTl       String
+  questionTag    String   // Taglish
+  answerTag      String   // Taglish
+  searchKeywords String?  // For faster searching
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}

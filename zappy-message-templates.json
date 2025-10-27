@@ -1,0 +1,663 @@
+{
+  "$schema": "Zappy Message Templates v1.0",
+  "description": "All message types that Zappy bot will send. Questions to users are NOT included here.",
+  "version": "1.0.0",
+  "templates": {
+    "welcome": {
+      "type": "text_with_quick_replies",
+      "description": "Initial welcome message when user first interacts with Zappy",
+      "body": "",
+      "quick_replies": [
+        {
+          "title": "",
+          "payload": ""
+        },
+        {
+          "title": "",
+          "payload": ""
+        },
+        {
+          "title": "",
+          "payload": ""
+        }
+      ]
+    },
+    "locations": {
+      "type": "location_carousel",
+      "description": "Show multiple Shakey's branch locations with navigation and order buttons",
+      "body": "",
+      "locations": [
+        {
+          "title": "",
+          "address": "",
+          "latitude": "",
+          "longitude": "",
+          "buttons": [
+            {
+              "type": "navigate",
+              "title": "",
+              "link": ""
+            },
+            {
+              "type": "order_now",
+              "title": "",
+              "link": ""
+            }
+          ]
+        }
+      ]
+    },
+    "menu_categories": {
+      "type": "generic_template",
+      "description": "High-level menu categories (Pizza, Chicken, Drinks, Pasta, etc.)",
+      "body": "",
+      "elements": [
+        {
+          "title": "",
+          "subtitle": "",
+          "image_url": "",
+          "buttons": [
+            {
+              "type": "postback",
+              "title": "",
+              "payload": ""
+            }
+          ]
+        }
+      ]
+    },
+    "menu_items_carousel": {
+      "type": "generic_template",
+      "description": "Product carousel showing items within a specific category",
+      "body": "",
+      "elements": [
+        {
+          "title": "",
+          "subtitle": "",
+          "image_url": "",
+          "price": "",
+          "buttons": [
+            {
+              "type": "postback",
+              "title": "",
+              "payload": ""
+            },
+            {
+              "type": "postback",
+              "title": "",
+              "payload": ""
+            }
+          ]
+        }
+      ]
+    },
+    "promo_offers_carousel": {
+      "type": "generic_template",
+      "description": "Active promotions and special offers carousel",
+      "body": "",
+      "elements": [
+        {
+          "title": "",
+          "subtitle": "",
+          "image_url": "",
+          "discount_badge": "",
+          "original_price": "",
+          "promo_price": "",
+          "validity": "",
+          "buttons": [
+            {
+              "type": "web_url",
+              "title": "",
+              "url": ""
+            },
+            {
+              "type": "postback",
+              "title": "",
+              "payload": ""
+            }
+          ]
+        }
+      ]
+    },
+    "order_summary": {
+      "type": "receipt_template",
+      "description": "Current cart summary with line items and total",
+      "recipient_name": "",
+      "order_number": "",
+      "currency": "PHP",
+      "payment_method": "",
+      "timestamp": "",
+      "address": {
+        "street_1": "",
+        "street_2": "",
+        "city": "",
+        "postal_code": "",
+        "state": "",
+        "country": "PH"
+      },
+      "summary": {
+        "subtotal": 0,
+        "delivery_fee": 0,
+        "discount": 0,
+        "total_cost": 0
+      },
+      "elements": [
+        {
+          "title": "",
+          "subtitle": "",
+          "quantity": 0,
+          "price": 0,
+          "currency": "PHP",
+          "image_url": ""
+        }
+      ],
+      "buttons": [
+        {
+          "type": "web_url",
+          "title": "",
+          "url": ""
+        },
+        {
+          "type": "postback",
+          "title": "",
+          "payload": ""
+        }
+      ]
+    },
+    "upsell_suggestions": {
+      "type": "generic_template",
+      "description": "Recommended add-ons based on current cart (drinks with pizza, rice with chicken, etc.)",
+      "body": "",
+      "elements": [
+        {
+          "title": "",
+          "subtitle": "",
+          "image_url": "",
+          "price": "",
+          "upsell_reason": "",
+          "buttons": [
+            {
+              "type": "postback",
+              "title": "",
+              "payload": ""
+            }
+          ]
+        }
+      ]
+    },
+    "supercard_comparison": {
+      "type": "generic_template",
+      "description": "SuperCard Classic vs Gold tier comparison",
+      "body": "",
+      "elements": [
+        {
+          "title": "SuperCard Classic",
+          "subtitle": "",
+          "image_url": "",
+          "price": "₱699",
+          "benefits_summary": "",
+          "buttons": [
+            {
+              "type": "web_url",
+              "title": "",
+              "url": ""
+            },
+            {
+              "type": "postback",
+              "title": "",
+              "payload": ""
+            }
+          ]
+        },
+        {
+          "title": "SuperCard Gold",
+          "subtitle": "",
+          "image_url": "",
+          "price": "₱999",
+          "benefits_summary": "",
+          "recommended_badge": true,
+          "buttons": [
+            {
+              "type": "web_url",
+              "title": "",
+              "url": ""
+            },
+            {
+              "type": "postback",
+              "title": "",
+              "payload": ""
+            }
+          ]
+        }
+      ]
+    },
+    "supercard_benefits_classic": {
+      "type": "list_template",
+      "description": "Detailed benefits breakdown for SuperCard Classic",
+      "top_element_style": "large",
+      "elements": [
+        {
+          "title": "",
+          "subtitle": "",
+          "image_url": "",
+          "icon": ""
+        }
+      ],
+      "buttons": [
+        {
+          "type": "web_url",
+          "title": "",
+          "url": ""
+        }
+      ]
+    },
+    "supercard_benefits_gold": {
+      "type": "list_template",
+      "description": "Detailed benefits breakdown for SuperCard Gold",
+      "top_element_style": "large",
+      "elements": [
+        {
+          "title": "",
+          "subtitle": "",
+          "image_url": "",
+          "icon": ""
+        }
+      ],
+      "buttons": [
+        {
+          "type": "web_url",
+          "title": "",
+          "url": ""
+        }
+      ]
+    },
+    "birthday_treat_info": {
+      "type": "button_template",
+      "description": "How to claim SuperCard birthday free pizza",
+      "body": "",
+      "image_url": "",
+      "buttons": [
+        {
+          "type": "web_url",
+          "title": "",
+          "url": ""
+        },
+        {
+          "type": "postback",
+          "title": "",
+          "payload": ""
+        }
+      ]
+    },
+    "order_confirmation": {
+      "type": "button_template",
+      "description": "Order successfully placed confirmation with reference number",
+      "body": "",
+      "image_url": "",
+      "buttons": [
+        {
+          "type": "web_url",
+          "title": "",
+          "url": ""
+        },
+        {
+          "type": "postback",
+          "title": "",
+          "payload": ""
+        }
+      ]
+    },
+    "human_handoff": {
+      "type": "text_with_quick_replies",
+      "description": "Escalation to human agent with reference code",
+      "body": "",
+      "quick_replies": [
+        {
+          "title": "",
+          "payload": ""
+        },
+        {
+          "title": "",
+          "payload": ""
+        }
+      ]
+    },
+    "function_room_packages": {
+      "type": "generic_template",
+      "description": "Party room packages and event booking options",
+      "body": "",
+      "elements": [
+        {
+          "title": "",
+          "subtitle": "",
+          "image_url": "",
+          "package_inclusions": [],
+          "price_range": "",
+          "capacity": "",
+          "buttons": [
+            {
+              "type": "web_url",
+              "title": "",
+              "url": ""
+            },
+            {
+              "type": "postback",
+              "title": "",
+              "payload": ""
+            }
+          ]
+        }
+      ]
+    },
+    "contact_info": {
+      "type": "button_template",
+      "description": "Shakey's contact information (hotline, email, social media)",
+      "body": "",
+      "buttons": [
+        {
+          "type": "phone_number",
+          "title": "",
+          "payload": ""
+        },
+        {
+          "type": "web_url",
+          "title": "",
+          "url": ""
+        },
+        {
+          "type": "web_url",
+          "title": "",
+          "url": ""
+        }
+      ]
+    },
+    "store_hours": {
+      "type": "text",
+      "description": "Operating hours information",
+      "body": ""
+    },
+    "delivery_coverage_yes": {
+      "type": "button_template",
+      "description": "Address is within delivery coverage",
+      "body": "",
+      "servicing_branch": "",
+      "estimated_time": "",
+      "delivery_fee": "",
+      "buttons": [
+        {
+          "type": "postback",
+          "title": "",
+          "payload": ""
+        },
+        {
+          "type": "postback",
+          "title": "",
+          "payload": ""
+        }
+      ]
+    },
+    "delivery_coverage_no": {
+      "type": "button_template",
+      "description": "Address outside delivery coverage with alternative options",
+      "body": "",
+      "alternative_options": [],
+      "buttons": [
+        {
+          "type": "postback",
+          "title": "",
+          "payload": ""
+        },
+        {
+          "type": "web_url",
+          "title": "",
+          "url": ""
+        }
+      ]
+    },
+    "payment_methods": {
+      "type": "list_template",
+      "description": "Available payment methods",
+      "top_element_style": "compact",
+      "elements": [
+        {
+          "title": "",
+          "subtitle": "",
+          "icon": ""
+        }
+      ]
+    },
+    "bundle_deals": {
+      "type": "generic_template",
+      "description": "Family meal deals and combo packages",
+      "body": "",
+      "elements": [
+        {
+          "title": "",
+          "subtitle": "",
+          "image_url": "",
+          "original_price": "",
+          "bundle_price": "",
+          "savings": "",
+          "serves": "",
+          "inclusions": [],
+          "buttons": [
+            {
+              "type": "postback",
+              "title": "",
+              "payload": ""
+            },
+            {
+              "type": "web_url",
+              "title": "",
+              "url": ""
+            }
+          ]
+        }
+      ]
+    },
+    "product_detail": {
+      "type": "generic_template",
+      "description": "Single product full details with variants and customizations",
+      "elements": [
+        {
+          "title": "",
+          "subtitle": "",
+          "image_url": "",
+          "price": "",
+          "description": "",
+          "category": "",
+          "available_sizes": [],
+          "available_variants": [],
+          "nutritional_info": "",
+          "buttons": [
+            {
+              "type": "postback",
+              "title": "",
+              "payload": ""
+            },
+            {
+              "type": "postback",
+              "title": "",
+              "payload": ""
+            }
+          ]
+        }
+      ]
+    },
+    "faq_answer": {
+      "type": "text_with_quick_replies",
+      "description": "Generic FAQ response with related quick actions",
+      "body": "",
+      "quick_replies": [
+        {
+          "title": "",
+          "payload": ""
+        }
+      ]
+    },
+    "promo_applied": {
+      "type": "text",
+      "description": "Promo code successfully applied to cart",
+      "body": "",
+      "promo_code": "",
+      "discount_amount": "",
+      "promo_description": ""
+    },
+    "branch_info": {
+      "type": "generic_template",
+      "description": "Single branch detailed information",
+      "elements": [
+        {
+          "title": "",
+          "subtitle": "",
+          "image_url": "",
+          "address": "",
+          "contact_number": "",
+          "operating_hours": "",
+          "features": [],
+          "buttons": [
+            {
+              "type": "web_url",
+              "title": "",
+              "url": ""
+            },
+            {
+              "type": "postback",
+              "title": "",
+              "payload": ""
+            },
+            {
+              "type": "phone_number",
+              "title": "",
+              "payload": ""
+            }
+          ]
+        }
+      ]
+    },
+    "supercard_buy_one_take_one": {
+      "type": "button_template",
+      "description": "SuperCard Buy 1 Take 1 benefit explanation",
+      "body": "",
+      "image_url": "",
+      "buttons": [
+        {
+          "type": "postback",
+          "title": "",
+          "payload": ""
+        },
+        {
+          "type": "web_url",
+          "title": "",
+          "url": ""
+        }
+      ]
+    },
+    "supercard_points_balance": {
+      "type": "text",
+      "description": "SuperPoints balance and redemption info",
+      "body": "",
+      "points_balance": 0,
+      "points_value": "",
+      "earned_this_month": 0
+    },
+    "out_of_stock": {
+      "type": "text_with_quick_replies",
+      "description": "Item currently unavailable with alternative suggestions",
+      "body": "",
+      "unavailable_item": "",
+      "quick_replies": [
+        {
+          "title": "",
+          "payload": ""
+        }
+      ]
+    },
+    "order_cancellation_success": {
+      "type": "text",
+      "description": "Order successfully cancelled confirmation",
+      "body": "",
+      "order_number": "",
+      "refund_info": ""
+    },
+    "order_cancellation_failed": {
+      "type": "button_template",
+      "description": "Order cannot be cancelled (past time window)",
+      "body": "",
+      "buttons": [
+        {
+          "type": "phone_number",
+          "title": "",
+          "payload": ""
+        },
+        {
+          "type": "postback",
+          "title": "",
+          "payload": ""
+        }
+      ]
+    },
+    "reservation_confirmation": {
+      "type": "button_template",
+      "description": "Reservation successfully submitted",
+      "body": "",
+      "reservation_details": {
+        "name": "",
+        "date": "",
+        "time": "",
+        "pax": 0,
+        "branch": "",
+        "occasion": ""
+      },
+      "buttons": [
+        {
+          "type": "phone_number",
+          "title": "",
+          "payload": ""
+        }
+      ]
+    },
+    "supercard_registration_success": {
+      "type": "button_template",
+      "description": "SuperCard successfully registered",
+      "body": "",
+      "card_number": "",
+      "expiry_date": "",
+      "welcome_treat_code": "",
+      "buttons": [
+        {
+          "type": "web_url",
+          "title": "",
+          "url": ""
+        },
+        {
+          "type": "postback",
+          "title": "",
+          "payload": ""
+        }
+      ]
+    },
+    "error_generic": {
+      "type": "text_with_quick_replies",
+      "description": "Generic error message with recovery options",
+      "body": "",
+      "quick_replies": [
+        {
+          "title": "",
+          "payload": ""
+        },
+        {
+          "title": "",
+          "payload": ""
+        }
+      ]
+    },
+    "maintenance_notice": {
+      "type": "text",
+      "description": "System maintenance or temporary unavailability notice",
+      "body": "",
+      "expected_resolution": "",
+      "alternative_contact": ""
+    }
+  }
+}
