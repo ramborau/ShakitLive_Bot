@@ -11,13 +11,22 @@ interface HomeProps {
 
 export default async function Home(props: HomeProps) {
   const searchParams = await props.searchParams;
-  const threads = await getAllThreads();
 
-  // Get the first thread by default, or the selected one
-  const selectedThreadId = searchParams.threadId || threads[0]?.id;
-  const selectedThread = selectedThreadId
-    ? await getThreadById(selectedThreadId)
-    : null;
+  let threads: any[] = [];
+  let selectedThread: any = null;
+
+  try {
+    threads = await getAllThreads();
+
+    // Get the first thread by default, or the selected one
+    const selectedThreadId = searchParams.threadId || threads[0]?.id;
+    selectedThread = selectedThreadId
+      ? await getThreadById(selectedThreadId)
+      : null;
+  } catch (error) {
+    console.error("Database error:", error);
+    // Continue with empty threads array
+  }
 
   return (
     <div className="flex h-screen flex-col">
