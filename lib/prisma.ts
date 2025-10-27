@@ -14,37 +14,27 @@ if (!process.env.NETLIFY && typeof WebSocket === "undefined") {
 }
 
 function createPrismaClient() {
-  if (process.env.NODE_ENV === "production") {
-    // Production: Use Neon with connection pooling
-    const connectionString = process.env.DATABASE_URL;
-
-    if (!connectionString) {
-      console.error("[Prisma] DATABASE_URL environment variable is not set!");
-      throw new Error("DATABASE_URL environment variable is required in production");
-    }
-
-    console.log("[Prisma] Creating production client with Neon adapter");
-    console.log("[Prisma] Connection string present:", !!connectionString);
-    console.log("[Prisma] Connection string starts with:", connectionString.substring(0, 20));
-
-    const pool = new Pool({ connectionString });
-    const adapter = new PrismaNeon(pool);
-
-    return new PrismaClient({
-      adapter,
-      log: ["error"],
-    });
-  } else {
-    // Development: Use standard Prisma client
-    return new PrismaClient({
-      log: ["error", "warn"],
-      datasources: {
-        db: {
-          url: process.env.DATABASE_URL,
-        },
-      },
-    });
+  // Check if DATABASE_URL is set
+  if (!process.env.DATABASE_URL) {
+    console.error("[Prisma] DATABASE_URL environment variable is not set!");
+    throw new Error("DATABASE_URL environment variable is required");
   }
+
+  console.log("[Prisma] Creating Prisma client");
+  console.log("[Prisma] NODE_ENV:", process.env.NODE_ENV);
+  console.log("[Prisma] DATABASE_URL present:", !!process.env.DATABASE_URL);
+  console.log("[Prisma] DATABASE_URL starts with:", process.env.DATABASE_URL.substring(0, 20));
+
+  // Use standard Prisma client for all environments
+  // Prisma Postgres (Neon) works fine with the standard client
+  return new PrismaClient({
+    datasources: {
+      db: {
+        url: process.env.DATABASE_URL,
+      },
+    },
+    log: process.env.NODE_ENV === "production" ? ["error"] : ["error", "warn"],
+  });
 }
 
 export const prisma = globalForPrisma.prisma ?? createPrismaClient();
