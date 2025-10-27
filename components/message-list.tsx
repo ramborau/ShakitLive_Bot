@@ -44,6 +44,7 @@ interface Message {
   senderSsid: string;
   messageType: string;
   isFromBot: boolean;
+  metadata: string | null;
   sender: {
     ssid: string;
     firstName: string | null;

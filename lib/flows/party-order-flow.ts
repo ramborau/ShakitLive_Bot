@@ -180,8 +180,8 @@ export class PartyOrderFlow {
         },
         {
           title: this.getButtonText("call", language),
-          type: "phone_number" as const,
-          payload: CALL_NUMBER
+          type: "web_url" as const,
+          url: `tel:${CALL_NUMBER}`
         }
       ]
     }));

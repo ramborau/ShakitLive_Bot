@@ -57,7 +57,7 @@ export class FlowHandler {
     }
 
     if (userMessage === "show_menu") {
-      await this.handleGreetingOrUnknown(threadId, userSsid, "unknown", language);
+      await this.handleGreetingOrUnknown(threadId, userSsid, "unknown", "en");
       return;
     }
 
@@ -159,7 +159,7 @@ export class FlowHandler {
           threadId,
           userSsid,
           userMessage,
-          await ConversationManager.getContext(threadId).then(c => c.flowStep),
+          await ConversationManager.getContext(threadId).then(c => c.flowStep || null),
           await ConversationManager.getContext(threadId).then(c => c.flowData),
           language,
           intentResult
@@ -171,7 +171,7 @@ export class FlowHandler {
           threadId,
           userSsid,
           userMessage,
-          await ConversationManager.getContext(threadId).then(c => c.flowStep),
+          await ConversationManager.getContext(threadId).then(c => c.flowStep || null),
           await ConversationManager.getContext(threadId).then(c => c.flowData),
           language
         );
@@ -182,7 +182,7 @@ export class FlowHandler {
           threadId,
           userSsid,
           userMessage,
-          await ConversationManager.getContext(threadId).then(c => c.flowStep),
+          await ConversationManager.getContext(threadId).then(c => c.flowStep || null),
           await ConversationManager.getContext(threadId).then(c => c.flowData),
           language
         );
@@ -193,7 +193,7 @@ export class FlowHandler {
           threadId,
           userSsid,
           userMessage,
-          await ConversationManager.getContext(threadId).then(c => c.flowStep),
+          await ConversationManager.getContext(threadId).then(c => c.flowStep || null),
           await ConversationManager.getContext(threadId).then(c => c.flowData),
           language
         );
@@ -204,7 +204,7 @@ export class FlowHandler {
           threadId,
           userSsid,
           userMessage,
-          await ConversationManager.getContext(threadId).then(c => c.flowStep),
+          await ConversationManager.getContext(threadId).then(c => c.flowStep || null),
           await ConversationManager.getContext(threadId).then(c => c.flowData),
           language
         );
@@ -215,7 +215,7 @@ export class FlowHandler {
           threadId,
           userSsid,
           userMessage,
-          await ConversationManager.getContext(threadId).then(c => c.flowStep),
+          await ConversationManager.getContext(threadId).then(c => c.flowStep || null),
           await ConversationManager.getContext(threadId).then(c => c.flowData),
           language
         );
@@ -226,7 +226,7 @@ export class FlowHandler {
           threadId,
           userSsid,
           userMessage,
-          await ConversationManager.getContext(threadId).then(c => c.flowStep),
+          await ConversationManager.getContext(threadId).then(c => c.flowStep || null),
           await ConversationManager.getContext(threadId).then(c => c.flowData),
           language
         );

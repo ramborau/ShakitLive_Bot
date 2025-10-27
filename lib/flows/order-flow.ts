@@ -217,7 +217,7 @@ export class OrderFlow {
     const carouselItems = matchedProducts.slice(0, 6).map(product => ({
       title: product.name,
       subtitle: `${product.price} • ${product.category || ''}`,
-      image_url: product.image || "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800",
+      image_url: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800",
       buttons: [
         {
           title: "Add to Cart",
@@ -384,7 +384,7 @@ export class OrderFlow {
       const carouselItems = drinks.map(drink => ({
         title: drink.name,
         subtitle: `${drink.price}`,
-        image_url: drink.image || "https://images.unsplash.com/photo-1437418747212-8d9709afab22?w=800",
+        image_url: "https://images.unsplash.com/photo-1437418747212-8d9709afab22?w=800",
         buttons: [
           {
             title: "Add to Cart",
@@ -494,7 +494,7 @@ export class OrderFlow {
       const carouselItems = desserts.map(dessert => ({
         title: dessert.name,
         subtitle: `${dessert.price}`,
-        image_url: dessert.image || "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800",
+        image_url: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800",
         buttons: [
           {
             title: "Add to Cart",

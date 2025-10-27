@@ -45,8 +45,7 @@ export class FAQService {
     const faqs = await prisma.fAQ.findMany({
       where: {
         category: {
-          contains: category,
-          mode: 'insensitive'
+          contains: category
         }
       },
       take: 5
