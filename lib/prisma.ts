@@ -7,8 +7,11 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
-// Configure Neon for serverless with WebSocket support
-neonConfig.webSocketConstructor = ws;
+// Configure WebSocket for Neon - only in non-Netlify environments
+// Netlify's serverless functions don't support the ws package
+if (!process.env.NETLIFY && typeof WebSocket === "undefined") {
+  neonConfig.webSocketConstructor = ws;
+}
 
 function createPrismaClient() {
   if (process.env.NODE_ENV === "production") {
