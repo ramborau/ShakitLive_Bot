@@ -1,0 +1,355 @@
+=== BOT COMPREHENSIVE TESTING LOG ===
+Test Started: 10/27/2025, 1:12:52 PM
+Test User PSID: 8748752085160704
+
+
+
+📚 TESTING FAQ QUESTIONS
+--------------------------------------------------------------------------------
+
+🧪 Testing: Hours - "What are your operating hours?"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":719,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A6zs4hshX1rRuYs2BfQ55Vr\"}}"}
+[2025-10-27T07:42:52.870Z] ❌ FAILED - Hours: "What are your operating hours?"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":719,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A6zs4hshX1rRuYs2BfQ55Vr\"}}"}}
+[2025-10-27T07:42:52.870Z] ❌ FAILED - Hours: "What are your operating hours?"
+  {"error":{"success":false,"statusCode":400,"responseTime":719,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A6zs4hshX1rRuYs2BfQ55Vr\"}}"}}
+
+🧪 Testing: Payment - "Do you accept credit cards?"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":499,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"Aztxg_4L5_Cr4jpHCjjH5DR\"}}"}
+[2025-10-27T07:42:55.371Z] ❌ FAILED - Payment: "Do you accept credit cards?"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":499,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"Aztxg_4L5_Cr4jpHCjjH5DR\"}}"}}
+[2025-10-27T07:42:55.371Z] ❌ FAILED - Payment: "Do you accept credit cards?"
+  {"error":{"success":false,"statusCode":400,"responseTime":499,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"Aztxg_4L5_Cr4jpHCjjH5DR\"}}"}}
+
+🧪 Testing: Delivery - "How long is delivery?"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":495,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AqSJcVh-gmOeyVFgLUVOtRB\"}}"}
+[2025-10-27T07:42:57.869Z] ❌ FAILED - Delivery: "How long is delivery?"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":495,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AqSJcVh-gmOeyVFgLUVOtRB\"}}"}}
+[2025-10-27T07:42:57.869Z] ❌ FAILED - Delivery: "How long is delivery?"
+  {"error":{"success":false,"statusCode":400,"responseTime":495,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AqSJcVh-gmOeyVFgLUVOtRB\"}}"}}
+
+🧪 Testing: Payment - "What payment methods do you accept?"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":515,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ADtERQlpwJlEJjs393XhAUE\"}}"}
+[2025-10-27T07:43:00.385Z] ❌ FAILED - Payment: "What payment methods do you accept?"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":515,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ADtERQlpwJlEJjs393XhAUE\"}}"}}
+[2025-10-27T07:43:00.385Z] ❌ FAILED - Payment: "What payment methods do you accept?"
+  {"error":{"success":false,"statusCode":400,"responseTime":515,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ADtERQlpwJlEJjs393XhAUE\"}}"}}
+
+🧪 Testing: Ordering - "Can I order online?"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":589,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AwxvF6BveIl7HnH3o2rRfgZ\"}}"}
+[2025-10-27T07:43:02.976Z] ❌ FAILED - Ordering: "Can I order online?"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":589,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AwxvF6BveIl7HnH3o2rRfgZ\"}}"}}
+[2025-10-27T07:43:02.976Z] ❌ FAILED - Ordering: "Can I order online?"
+  {"error":{"success":false,"statusCode":400,"responseTime":589,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AwxvF6BveIl7HnH3o2rRfgZ\"}}"}}
+
+🧪 Testing: Amenities - "Do you have WiFi?"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":555,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ANXKZtOZVOakalM1jWxb-ON\"}}"}
+[2025-10-27T07:43:05.534Z] ❌ FAILED - Amenities: "Do you have WiFi?"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":555,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ANXKZtOZVOakalM1jWxb-ON\"}}"}}
+[2025-10-27T07:43:05.534Z] ❌ FAILED - Amenities: "Do you have WiFi?"
+  {"error":{"success":false,"statusCode":400,"responseTime":555,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ANXKZtOZVOakalM1jWxb-ON\"}}"}}
+
+
+🔄 TESTING CONVERSATION FLOWS
+--------------------------------------------------------------------------------
+
+🧪 Testing: Greeting - "Hi"
+[2025-10-27T07:43:08.045Z] ❌ FAILED - Greeting: "Hi"
+  {"error":{"success":false,"statusCode":400,"responseTime":507,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AExLy-FP_nol03O-k9EMlIV\"}}"}}
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":507,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AExLy-FP_nol03O-k9EMlIV\"}}"}
+[2025-10-27T07:43:08.045Z] ❌ FAILED - Greeting: "Hi"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":507,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AExLy-FP_nol03O-k9EMlIV\"}}"}}
+
+🧪 Testing: Greeting - "Hello"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":531,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AAlgZhF2LSGBZnWzajjKd5p\"}}"}
+[2025-10-27T07:43:10.576Z] ❌ FAILED - Greeting: "Hello"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":531,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AAlgZhF2LSGBZnWzajjKd5p\"}}"}}
+[2025-10-27T07:43:10.576Z] ❌ FAILED - Greeting: "Hello"
+  {"error":{"success":false,"statusCode":400,"responseTime":531,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AAlgZhF2LSGBZnWzajjKd5p\"}}"}}
+
+🧪 Testing: Greeting (Tagalog) - "Kumusta"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":514,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AZEkr0FE2FgsbPjJTrvxGyf\"}}"}
+[2025-10-27T07:43:13.092Z] ❌ FAILED - Greeting (Tagalog): "Kumusta"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":514,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AZEkr0FE2FgsbPjJTrvxGyf\"}}"}}
+[2025-10-27T07:43:13.092Z] ❌ FAILED - Greeting (Tagalog): "Kumusta"
+  {"error":{"success":false,"statusCode":400,"responseTime":514,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AZEkr0FE2FgsbPjJTrvxGyf\"}}"}}
+
+🧪 Testing: Menu - "Show me your menu"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":641,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AiIyJck5g7C1x7PhFtQgy6_\"}}"}
+[2025-10-27T07:43:15.737Z] ❌ FAILED - Menu: "Show me your menu"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":641,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AiIyJck5g7C1x7PhFtQgy6_\"}}"}}
+[2025-10-27T07:43:15.737Z] ❌ FAILED - Menu: "Show me your menu"
+  {"error":{"success":false,"statusCode":400,"responseTime":641,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AiIyJck5g7C1x7PhFtQgy6_\"}}"}}
+
+🧪 Testing: Menu - "What pizzas do you have?"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":522,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AMc_Ox_pWrPQ4R970wWJ_JB\"}}"}
+[2025-10-27T07:43:18.260Z] ❌ FAILED - Menu: "What pizzas do you have?"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":522,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AMc_Ox_pWrPQ4R970wWJ_JB\"}}"}}
+[2025-10-27T07:43:18.260Z] ❌ FAILED - Menu: "What pizzas do you have?"
+  {"error":{"success":false,"statusCode":400,"responseTime":522,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AMc_Ox_pWrPQ4R970wWJ_JB\"}}"}}
+
+🧪 Testing: Location - "Where is the nearest branch?"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":512,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A7kmApIKbIPe8vjw96Qoq1R\"}}"}
+[2025-10-27T07:43:20.773Z] ❌ FAILED - Location: "Where is the nearest branch?"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":512,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A7kmApIKbIPe8vjw96Qoq1R\"}}"}}
+[2025-10-27T07:43:20.773Z] ❌ FAILED - Location: "Where is the nearest branch?"
+  {"error":{"success":false,"statusCode":400,"responseTime":512,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A7kmApIKbIPe8vjw96Qoq1R\"}}"}}
+
+🧪 Testing: Location - "Branches in Manila"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":508,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AtxnA5nNgt-6x1Ukzs7Eq3E\"}}"}
+[2025-10-27T07:43:23.284Z] ❌ FAILED - Location: "Branches in Manila"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":508,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AtxnA5nNgt-6x1Ukzs7Eq3E\"}}"}}
+[2025-10-27T07:43:23.284Z] ❌ FAILED - Location: "Branches in Manila"
+  {"error":{"success":false,"statusCode":400,"responseTime":508,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AtxnA5nNgt-6x1Ukzs7Eq3E\"}}"}}
+
+🧪 Testing: Promo - "Any promos?"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":542,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AOD5bO1MoHPwZMXH0ljOTWU\"}}"}
+[2025-10-27T07:43:25.827Z] ❌ FAILED - Promo: "Any promos?"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":542,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AOD5bO1MoHPwZMXH0ljOTWU\"}}"}}
+[2025-10-27T07:43:25.827Z] ❌ FAILED - Promo: "Any promos?"
+  {"error":{"success":false,"statusCode":400,"responseTime":542,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AOD5bO1MoHPwZMXH0ljOTWU\"}}"}}
+
+🧪 Testing: Promo - "Do you have deals?"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":531,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ABqlUVg4d895p-pbdCkYbG_\"}}"}
+[2025-10-27T07:43:28.360Z] ❌ FAILED - Promo: "Do you have deals?"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":531,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ABqlUVg4d895p-pbdCkYbG_\"}}"}}
+[2025-10-27T07:43:28.360Z] ❌ FAILED - Promo: "Do you have deals?"
+  {"error":{"success":false,"statusCode":400,"responseTime":531,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ABqlUVg4d895p-pbdCkYbG_\"}}"}}
+
+🧪 Testing: Promo - "What offers are available?"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":1407,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AMDSBXC-ANoY9LsyULXyUal\"}}"}
+[2025-10-27T07:43:31.770Z] ❌ FAILED - Promo: "What offers are available?"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":1407,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AMDSBXC-ANoY9LsyULXyUal\"}}"}}
+[2025-10-27T07:43:31.770Z] ❌ FAILED - Promo: "What offers are available?"
+  {"error":{"success":false,"statusCode":400,"responseTime":1407,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AMDSBXC-ANoY9LsyULXyUal\"}}"}}
+
+🧪 Testing: Supercard - "What is Supercard?"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":1099,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AKDSA_Y2N7pCqLcfC_l6pSz\"}}"}
+[2025-10-27T07:43:34.873Z] ❌ FAILED - Supercard: "What is Supercard?"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":1099,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AKDSA_Y2N7pCqLcfC_l6pSz\"}}"}}
+[2025-10-27T07:43:34.873Z] ❌ FAILED - Supercard: "What is Supercard?"
+  {"error":{"success":false,"statusCode":400,"responseTime":1099,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AKDSA_Y2N7pCqLcfC_l6pSz\"}}"}}
+
+🧪 Testing: Supercard - "How do I get a Supercard?"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":550,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AA8YaBHsFSqc7Noy5-DhVyU\"}}"}
+[2025-10-27T07:43:37.424Z] ❌ FAILED - Supercard: "How do I get a Supercard?"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":550,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AA8YaBHsFSqc7Noy5-DhVyU\"}}"}}
+[2025-10-27T07:43:37.424Z] ❌ FAILED - Supercard: "How do I get a Supercard?"
+  {"error":{"success":false,"statusCode":400,"responseTime":550,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AA8YaBHsFSqc7Noy5-DhVyU\"}}"}}
+
+🧪 Testing: Party - "Party packages"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":522,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AgJYmT9lc_YSFoXV33IKK6v\"}}"}
+[2025-10-27T07:43:39.948Z] ❌ FAILED - Party: "Party packages"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":522,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AgJYmT9lc_YSFoXV33IKK6v\"}}"}}
+[2025-10-27T07:43:39.948Z] ❌ FAILED - Party: "Party packages"
+  {"error":{"success":false,"statusCode":400,"responseTime":522,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AgJYmT9lc_YSFoXV33IKK6v\"}}"}}
+
+🧪 Testing: Party - "Birthday party booking"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":515,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AcLbawqjSuWWRuNRzjCVgjX\"}}"}
+[2025-10-27T07:43:42.464Z] ❌ FAILED - Party: "Birthday party booking"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":515,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AcLbawqjSuWWRuNRzjCVgjX\"}}"}}
+[2025-10-27T07:43:42.464Z] ❌ FAILED - Party: "Birthday party booking"
+  {"error":{"success":false,"statusCode":400,"responseTime":515,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AcLbawqjSuWWRuNRzjCVgjX\"}}"}}
+
+🧪 Testing: Order - "I want to order pizza"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":542,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A_-LritVigQNCe_xbH2WYXE\"}}"}
+[2025-10-27T07:43:45.008Z] ❌ FAILED - Order: "I want to order pizza"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":542,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A_-LritVigQNCe_xbH2WYXE\"}}"}}
+[2025-10-27T07:43:45.008Z] ❌ FAILED - Order: "I want to order pizza"
+  {"error":{"success":false,"statusCode":400,"responseTime":542,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A_-LritVigQNCe_xbH2WYXE\"}}"}}
+
+🧪 Testing: Order (Taglish) - "Pabili ng pizza"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":524,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AXhJ8q4i3bK6plkKwnjE1VV\"}}"}
+[2025-10-27T07:43:47.534Z] ❌ FAILED - Order (Taglish): "Pabili ng pizza"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":524,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AXhJ8q4i3bK6plkKwnjE1VV\"}}"}}
+[2025-10-27T07:43:47.534Z] ❌ FAILED - Order (Taglish): "Pabili ng pizza"
+  {"error":{"success":false,"statusCode":400,"responseTime":524,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AXhJ8q4i3bK6plkKwnjE1VV\"}}"}}
+
+🧪 Testing: Tracking - "Track my order"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":575,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AZUQK51MlDhsOttf6UR8Hg4\"}}"}
+[2025-10-27T07:43:50.111Z] ❌ FAILED - Tracking: "Track my order"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":575,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AZUQK51MlDhsOttf6UR8Hg4\"}}"}}
+[2025-10-27T07:43:50.111Z] ❌ FAILED - Tracking: "Track my order"
+  {"error":{"success":false,"statusCode":400,"responseTime":575,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AZUQK51MlDhsOttf6UR8Hg4\"}}"}}
+
+🧪 Testing: Tracking - "Where is my order?"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":548,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A9eXmKtup_dGa4vqnJvrzDf\"}}"}
+[2025-10-27T07:43:52.660Z] ❌ FAILED - Tracking: "Where is my order?"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":548,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A9eXmKtup_dGa4vqnJvrzDf\"}}"}}
+[2025-10-27T07:43:52.660Z] ❌ FAILED - Tracking: "Where is my order?"
+  {"error":{"success":false,"statusCode":400,"responseTime":548,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A9eXmKtup_dGa4vqnJvrzDf\"}}"}}
+
+🧪 Testing: Complaint - "My order is wrong"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":523,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"Al-gqkQ1xpAlJlpPDAHjcNr\"}}"}
+[2025-10-27T07:43:55.190Z] ❌ FAILED - Complaint: "My order is wrong"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":523,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"Al-gqkQ1xpAlJlpPDAHjcNr\"}}"}}
+[2025-10-27T07:43:55.190Z] ❌ FAILED - Complaint: "My order is wrong"
+  {"error":{"success":false,"statusCode":400,"responseTime":523,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"Al-gqkQ1xpAlJlpPDAHjcNr\"}}"}}
+
+🧪 Testing: Complaint - "Food is cold"
+  ❌ Error: {"success":false,"statusCode":400,"responseTime":524,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ANPe2C5KmL2xT1ncJeFGlZe\"}}"}
+[2025-10-27T07:43:57.724Z] ❌ FAILED - Complaint: "Food is cold"
+  Details: {"error":{"success":false,"statusCode":400,"responseTime":524,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ANPe2C5KmL2xT1ncJeFGlZe\"}}"}}
+[2025-10-27T07:43:57.724Z] ❌ FAILED - Complaint: "Food is cold"
+  {"error":{"success":false,"statusCode":400,"responseTime":524,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ANPe2C5KmL2xT1ncJeFGlZe\"}}"}}
+
+
+================================================================================
+📊 TEST SUMMARY
+================================================================================
+✅ Passed: 0
+❌ Failed: 26
+⚠️  Warnings: 0
+📈 Total Tests: 26
+
+❌ FAILED TESTS:
+  - Hours: "What are your operating hours?"
+    Error: {"success":false,"statusCode":400,"responseTime":719,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A6zs4hshX1rRuYs2BfQ55Vr\"}}"}
+  - Payment: "Do you accept credit cards?"
+    Error: {"success":false,"statusCode":400,"responseTime":499,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"Aztxg_4L5_Cr4jpHCjjH5DR\"}}"}
+  - Delivery: "How long is delivery?"
+    Error: {"success":false,"statusCode":400,"responseTime":495,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AqSJcVh-gmOeyVFgLUVOtRB\"}}"}
+  - Payment: "What payment methods do you accept?"
+    Error: {"success":false,"statusCode":400,"responseTime":515,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ADtERQlpwJlEJjs393XhAUE\"}}"}
+  - Ordering: "Can I order online?"
+    Error: {"success":false,"statusCode":400,"responseTime":589,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AwxvF6BveIl7HnH3o2rRfgZ\"}}"}
+  - Amenities: "Do you have WiFi?"
+    Error: {"success":false,"statusCode":400,"responseTime":555,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ANXKZtOZVOakalM1jWxb-ON\"}}"}
+  - Greeting: "Hi"
+    Error: {"success":false,"statusCode":400,"responseTime":507,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AExLy-FP_nol03O-k9EMlIV\"}}"}
+  - Greeting: "Hello"
+    Error: {"success":false,"statusCode":400,"responseTime":531,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AAlgZhF2LSGBZnWzajjKd5p\"}}"}
+  - Greeting (Tagalog): "Kumusta"
+    Error: {"success":false,"statusCode":400,"responseTime":514,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AZEkr0FE2FgsbPjJTrvxGyf\"}}"}
+  - Menu: "Show me your menu"
+    Error: {"success":false,"statusCode":400,"responseTime":641,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AiIyJck5g7C1x7PhFtQgy6_\"}}"}
+  - Menu: "What pizzas do you have?"
+    Error: {"success":false,"statusCode":400,"responseTime":522,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AMc_Ox_pWrPQ4R970wWJ_JB\"}}"}
+  - Location: "Where is the nearest branch?"
+    Error: {"success":false,"statusCode":400,"responseTime":512,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A7kmApIKbIPe8vjw96Qoq1R\"}}"}
+  - Location: "Branches in Manila"
+    Error: {"success":false,"statusCode":400,"responseTime":508,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AtxnA5nNgt-6x1Ukzs7Eq3E\"}}"}
+  - Promo: "Any promos?"
+    Error: {"success":false,"statusCode":400,"responseTime":542,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AOD5bO1MoHPwZMXH0ljOTWU\"}}"}
+  - Promo: "Do you have deals?"
+    Error: {"success":false,"statusCode":400,"responseTime":531,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ABqlUVg4d895p-pbdCkYbG_\"}}"}
+  - Promo: "What offers are available?"
+    Error: {"success":false,"statusCode":400,"responseTime":1407,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AMDSBXC-ANoY9LsyULXyUal\"}}"}
+  - Supercard: "What is Supercard?"
+    Error: {"success":false,"statusCode":400,"responseTime":1099,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AKDSA_Y2N7pCqLcfC_l6pSz\"}}"}
+  - Supercard: "How do I get a Supercard?"
+    Error: {"success":false,"statusCode":400,"responseTime":550,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AA8YaBHsFSqc7Noy5-DhVyU\"}}"}
+  - Party: "Party packages"
+    Error: {"success":false,"statusCode":400,"responseTime":522,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AgJYmT9lc_YSFoXV33IKK6v\"}}"}
+  - Party: "Birthday party booking"
+    Error: {"success":false,"statusCode":400,"responseTime":515,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AcLbawqjSuWWRuNRzjCVgjX\"}}"}
+  - Order: "I want to order pizza"
+    Error: {"success":false,"statusCode":400,"responseTime":542,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A_-LritVigQNCe_xbH2WYXE\"}}"}
+  - Order (Taglish): "Pabili ng pizza"
+    Error: {"success":false,"statusCode":400,"responseTime":524,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AXhJ8q4i3bK6plkKwnjE1VV\"}}"}
+  - Tracking: "Track my order"
+    Error: {"success":false,"statusCode":400,"responseTime":575,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AZUQK51MlDhsOttf6UR8Hg4\"}}"}
+  - Tracking: "Where is my order?"
+    Error: {"success":false,"statusCode":400,"responseTime":548,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A9eXmKtup_dGa4vqnJvrzDf\"}}"}
+  - Complaint: "My order is wrong"
+    Error: {"success":false,"statusCode":400,"responseTime":523,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"Al-gqkQ1xpAlJlpPDAHjcNr\"}}"}
+  - Complaint: "Food is cold"
+    Error: {"success":false,"statusCode":400,"responseTime":524,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ANPe2C5KmL2xT1ncJeFGlZe\"}}"}
+
+
+=== TEST SUMMARY ===
+Passed: 0
+Failed: 26
+Warnings: 0
+Total: 26
+
+=== FAILED TESTS ===
+Hours: "What are your operating hours?"
+  Error: {"success":false,"statusCode":400,"responseTime":719,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A6zs4hshX1rRuYs2BfQ55Vr\"}}"}
+Payment: "Do you accept credit cards?"
+  Error: {"success":false,"statusCode":400,"responseTime":499,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"Aztxg_4L5_Cr4jpHCjjH5DR\"}}"}
+Delivery: "How long is delivery?"
+  Error: {"success":false,"statusCode":400,"responseTime":495,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AqSJcVh-gmOeyVFgLUVOtRB\"}}"}
+Payment: "What payment methods do you accept?"
+  Error: {"success":false,"statusCode":400,"responseTime":515,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ADtERQlpwJlEJjs393XhAUE\"}}"}
+Ordering: "Can I order online?"
+  Error: {"success":false,"statusCode":400,"responseTime":589,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AwxvF6BveIl7HnH3o2rRfgZ\"}}"}
+Amenities: "Do you have WiFi?"
+  Error: {"success":false,"statusCode":400,"responseTime":555,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ANXKZtOZVOakalM1jWxb-ON\"}}"}
+Greeting: "Hi"
+  Error: {"success":false,"statusCode":400,"responseTime":507,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AExLy-FP_nol03O-k9EMlIV\"}}"}
+Greeting: "Hello"
+  Error: {"success":false,"statusCode":400,"responseTime":531,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AAlgZhF2LSGBZnWzajjKd5p\"}}"}
+Greeting (Tagalog): "Kumusta"
+  Error: {"success":false,"statusCode":400,"responseTime":514,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AZEkr0FE2FgsbPjJTrvxGyf\"}}"}
+Menu: "Show me your menu"
+  Error: {"success":false,"statusCode":400,"responseTime":641,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AiIyJck5g7C1x7PhFtQgy6_\"}}"}
+Menu: "What pizzas do you have?"
+  Error: {"success":false,"statusCode":400,"responseTime":522,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AMc_Ox_pWrPQ4R970wWJ_JB\"}}"}
+Location: "Where is the nearest branch?"
+  Error: {"success":false,"statusCode":400,"responseTime":512,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A7kmApIKbIPe8vjw96Qoq1R\"}}"}
+Location: "Branches in Manila"
+  Error: {"success":false,"statusCode":400,"responseTime":508,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AtxnA5nNgt-6x1Ukzs7Eq3E\"}}"}
+Promo: "Any promos?"
+  Error: {"success":false,"statusCode":400,"responseTime":542,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AOD5bO1MoHPwZMXH0ljOTWU\"}}"}
+Promo: "Do you have deals?"
+  Error: {"success":false,"statusCode":400,"responseTime":531,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ABqlUVg4d895p-pbdCkYbG_\"}}"}
+Promo: "What offers are available?"
+  Error: {"success":false,"statusCode":400,"responseTime":1407,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AMDSBXC-ANoY9LsyULXyUal\"}}"}
+Supercard: "What is Supercard?"
+  Error: {"success":false,"statusCode":400,"responseTime":1099,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AKDSA_Y2N7pCqLcfC_l6pSz\"}}"}
+Supercard: "How do I get a Supercard?"
+  Error: {"success":false,"statusCode":400,"responseTime":550,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AA8YaBHsFSqc7Noy5-DhVyU\"}}"}
+Party: "Party packages"
+  Error: {"success":false,"statusCode":400,"responseTime":522,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AgJYmT9lc_YSFoXV33IKK6v\"}}"}
+Party: "Birthday party booking"
+  Error: {"success":false,"statusCode":400,"responseTime":515,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AcLbawqjSuWWRuNRzjCVgjX\"}}"}
+Order: "I want to order pizza"
+  Error: {"success":false,"statusCode":400,"responseTime":542,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A_-LritVigQNCe_xbH2WYXE\"}}"}
+Order (Taglish): "Pabili ng pizza"
+  Error: {"success":false,"statusCode":400,"responseTime":524,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AXhJ8q4i3bK6plkKwnjE1VV\"}}"}
+Tracking: "Track my order"
+  Error: {"success":false,"statusCode":400,"responseTime":575,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"AZUQK51MlDhsOttf6UR8Hg4\"}}"}
+Tracking: "Where is my order?"
+  Error: {"success":false,"statusCode":400,"responseTime":548,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"A9eXmKtup_dGa4vqnJvrzDf\"}}"}
+Complaint: "My order is wrong"
+  Error: {"success":false,"statusCode":400,"responseTime":523,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"Al-gqkQ1xpAlJlpPDAHjcNr\"}}"}
+Complaint: "Food is cold"
+  Error: {"success":false,"statusCode":400,"responseTime":524,"data":"{\"error\":{\"message\":\"(#100) No matching user found\",\"type\":\"OAuthException\",\"code\":100,\"error_subcode\":2018001,\"fbtrace_id\":\"ANPe2C5KmL2xT1ncJeFGlZe\"}}"}
+
+✅ Test results saved to bot-test-log.txt
+================================================================================
+
+================================================================================
+AUTOMATED TESTING NOTES
+================================================================================
+
+Issue Found: Automated testing via Facebook Send API requires a valid user PSID
+from someone who has already messaged the Page. The test PSID 8748752085160704
+was not a real user.
+
+Real User PSID Found: 24614877841461856
+
+RECOMMENDED TESTING APPROACH:
+Instead of automated API testing, manual testing through Facebook Messenger is
+more appropriate for this bot:
+
+1. Open Facebook Messenger
+2. Search for "Shakey's Pizza" page
+3. Send test messages directly
+4. Observe bot responses in real-time
+5. Test flows: greeting, promos (COUPONS), supercard (COUPONS), location, etc.
+
+KEY THINGS TO VERIFY MANUALLY:
+- Bot responds quickly (< 3 seconds)
+- COMPLEX COUPON templates appear for:
+  * Promo inquiries (should show 3 beautiful coupon cards)
+  * Supercard inquiries (should show Gold + Classic card coupons)
+- Quick replies appear when appropriate
+- Flows don't get stuck after 2-3 messages
+- Language detection works (English/Tagalog/Taglish)
+- First name personalization works
+
+ALTERNATIVE: Test via real Messenger conversation instead of API calls
+
+================================================================================

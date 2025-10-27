@@ -57,23 +57,35 @@ model ThreadParticipant {
 }
 
 model Message {
-  id                String    @id @default(uuid())
-  threadId          String
-  senderSsid        String
-  content           String
-  messageType       String    @default("text") // text, template, image, etc.
-  isFromBot         Boolean   @default(false) // true if sent by bot, false if from user
-  timestamp         DateTime  @default(now())
-  enrichmentStatus  String    @default("pending") // pending, success, failed
-  metadata          String?   // JSON string for additional data
-  createdAt         DateTime  @default(now())
+  id                  String    @id @default(uuid())
+  threadId            String
+  senderSsid          String
+  content             String
+  messageType         String    @default("text") // text, template, image, etc.
+  isFromBot           Boolean   @default(false) // true if sent by bot, false if from user
+  timestamp           DateTime  @default(now())
+  enrichmentStatus    String    @default("pending") // pending, success, failed
+  metadata            String?   // JSON string for additional data
 
-  thread            Thread    @relation(fields: [threadId], references: [id], onDelete: Cascade)
-  sender            User      @relation(fields: [senderSsid], references: [ssid])
+  // Message Delivery Tracking (for bot messages)
+  deliveryStatus      String    @default("pending") // pending, sent, delivered, failed
+  facebookMessageId   String?   // Facebook's message ID when successfully sent
+  failureReason       String?   // Error message if delivery failed
+  failureDetails      String?   // Full error details (type, code, fbtrace_id) as JSON
+  attemptCount        Int       @default(0) // Number of send attempts
+  lastAttemptAt       DateTime? // Timestamp of last send attempt
+  deliveredAt         DateTime? // When message was delivered to Facebook
+
+  createdAt           DateTime  @default(now())
+
+  thread              Thread    @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  sender              User      @relation(fields: [senderSsid], references: [ssid])
 
   @@index([threadId])
   @@index([senderSsid])
   @@index([timestamp])
+  @@index([deliveryStatus])
+  @@index([isFromBot])
 }
 
 model TokenLog {

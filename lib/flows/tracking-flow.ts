@@ -10,7 +10,7 @@
  * 5. FLOW_END
  */
 
-import { SobotService } from "../services/sobot-service";
+import { FacebookService } from "../services/facebook-service";
 import { ConversationManager } from "../services/conversation-manager";
 import { createMessage } from "../db-operations";
 
@@ -84,7 +84,7 @@ export class TrackingFlow {
       ? "🚚 Tulungan ko kayong i-track ang inyong order!"
       : "🚚 Let me help po you track your order!";
 
-    await SobotService.sendTextMessage(userSsid, message);
+    await FacebookService.sendTextMessage(userSsid, message);
     await createMessage({
       senderSsid: userSsid,
       content: message,
@@ -126,7 +126,7 @@ export class TrackingFlow {
       ? "Buksan Tracker"
       : "Open Tracker";
 
-    const result = await SobotService.sendWebviewButton(
+    const result = await FacebookService.sendWebviewButton(
       userSsid,
       buttonText,
       buttonTitle,
@@ -148,7 +148,7 @@ export class TrackingFlow {
         ? "I-click ang button sa itaas para i-track ang inyong order sa real-time! 📦"
         : "Click po the button above para ma-track your order in real-time! 📦";
 
-      await SobotService.sendTextMessage(userSsid, followUpMessage);
+      await FacebookService.sendTextMessage(userSsid, followUpMessage);
       await createMessage({
         senderSsid: userSsid,
         content: followUpMessage,
@@ -181,7 +181,7 @@ export class TrackingFlow {
       ? "Pakiusap ilagay ang inyong tracking number (halimbawa: #12345):"
       : "Please po enter your tracking number (example: #12345):";
 
-    await SobotService.sendTextMessage(userSsid, message);
+    await FacebookService.sendTextMessage(userSsid, message);
     await createMessage({
       senderSsid: userSsid,
       content: message,
@@ -214,7 +214,7 @@ export class TrackingFlow {
         ? "Hindi ko nahanap ang valid tracking number. Pakiusap ilagay ang valid tracking ID (halimbawa: #12345):"
         : "Hindi po ko nakahanap ng valid tracking number. Please enter valid tracking ID (example: #12345):";
 
-      await SobotService.sendTextMessage(userSsid, message);
+      await FacebookService.sendTextMessage(userSsid, message);
       await createMessage({
         senderSsid: userSsid,
         content: message,
@@ -263,7 +263,7 @@ export class TrackingFlow {
 
     const statusMessage = this.formatTrackingStatus(trackingId, deliveryMinutes, language);
 
-    await SobotService.sendTextMessage(userSsid, statusMessage);
+    await FacebookService.sendTextMessage(userSsid, statusMessage);
     await createMessage({
       senderSsid: userSsid,
       content: statusMessage,
@@ -278,7 +278,7 @@ export class TrackingFlow {
       ? "Aabisuhan ka namin kapag papunta na ang inyong order! 🎉"
       : "We'll notify po you when your order is on the way na! 🎉";
 
-    await SobotService.sendTextMessage(userSsid, followUpMessage);
+    await FacebookService.sendTextMessage(userSsid, followUpMessage);
     await createMessage({
       senderSsid: userSsid,
       content: followUpMessage,
@@ -334,7 +334,7 @@ export class TrackingFlow {
       ? "Pasensya na! May problema ako sa tracking system. Subukan muli mamaya o tawagan ang aming hotline."
       : "Oops! May problema po ako sa tracking system. Please try ulit later or tawagan our hotline.";
 
-    await SobotService.sendTextMessage(userSsid, message);
+    await FacebookService.sendTextMessage(userSsid, message);
     await createMessage({
       senderSsid: userSsid,
       content: message,

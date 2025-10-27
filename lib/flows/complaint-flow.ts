@@ -8,7 +8,7 @@
  * 3. FLOW_END
  */
 
-import { SobotService } from "../services/sobot-service";
+import { FacebookService } from "../services/facebook-service";
 import { ConversationManager } from "../services/conversation-manager";
 import { createMessage } from "../db-operations";
 
@@ -67,7 +67,7 @@ export class ComplaintFlow {
     // Warm apology message (professional and empathetic)
     const apologyMessage = this.getWarmApology(language);
 
-    await SobotService.sendTextMessage(userSsid, apologyMessage);
+    await FacebookService.sendTextMessage(userSsid, apologyMessage);
     await createMessage({
       senderSsid: userSsid,
       content: apologyMessage,
@@ -81,8 +81,8 @@ export class ComplaintFlow {
       escalationReason: "customer_complaint",
     });
 
-    // Small delay for better UX (shows bot is "thinking")
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Show typing indicator before next message
+    await FacebookService.sendTypingIndicator(userSsid, 1500);
 
     await this.showEscalationMessage(threadId, userSsid, language);
   }
@@ -116,7 +116,7 @@ export class ComplaintFlow {
   ): Promise<void> {
     const escalationMessage = this.getEscalationMessage(language);
 
-    await SobotService.sendTextMessage(userSsid, escalationMessage);
+    await FacebookService.sendTextMessage(userSsid, escalationMessage);
     await createMessage({
       senderSsid: userSsid,
       content: escalationMessage,
@@ -178,7 +178,7 @@ export class ComplaintFlow {
       ? "💬 Sasagot sa inyo ang aming team sa lalong madaling panahon. Salamat sa inyong pag-unawa!"
       : "💬 A member po of our team will respond to you shortly. We appreciate po your understanding!";
 
-    await SobotService.sendTextMessage(userSsid, finalMessage);
+    await FacebookService.sendTextMessage(userSsid, finalMessage);
     await createMessage({
       senderSsid: userSsid,
       content: finalMessage,
@@ -205,7 +205,7 @@ export class ComplaintFlow {
       ? "May teknikal na problema kami. Pakitawagan ang aming hotline para sa agarang tulong: 02-8888-8888"
       : "We're experiencing po technical difficulties. Please contact our hotline for immediate assistance: 02-8888-8888";
 
-    await SobotService.sendTextMessage(userSsid, message);
+    await FacebookService.sendTextMessage(userSsid, message);
     await createMessage({
       senderSsid: userSsid,
       content: message,

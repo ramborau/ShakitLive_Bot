@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { FlowHandler } from "@/lib/flows/flow-handler";
 import { findOrCreateThread } from "@/lib/db-operations";
 import { ConversationManager } from "@/lib/services/conversation-manager";
-import { SobotService } from "@/lib/services/sobot-service";
+import { FacebookService } from "@/lib/services/facebook-service";
 
 interface FacebookMessage {
   sender: {
@@ -157,7 +157,7 @@ async function handleMessagingEvent(event: FacebookMessage) {
 
           const confirmationText = confirmationMessages[language];
 
-          await SobotService.sendTextMessage(senderSsid, confirmationText);
+          await FacebookService.sendTextMessage(senderSsid, confirmationText);
           await createBotMessage(senderSsid, confirmationText);
 
           console.log("[Webhook] Conversation cleared and confirmation sent");

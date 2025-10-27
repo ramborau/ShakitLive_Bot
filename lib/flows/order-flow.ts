@@ -4,7 +4,7 @@
  */
 
 import { ConversationManager } from "../services/conversation-manager";
-import { SobotService } from "../services/sobot-service";
+import { FacebookService } from "../services/facebook-service";
 import { ProductMatcher } from "../services/product-matcher";
 import { PaymentService } from "../services/payment-service";
 import { WebhookService } from "../services/webhook-service";
@@ -82,17 +82,11 @@ export class OrderFlow {
         break;
 
       case "ASK_DRINKS":
-        await this.handleAskDrinks(threadId, userSsid, userMessage, data, language);
-        break;
-
       case "SHOW_DRINKS_CAROUSEL":
         await this.handleDrinkSelection(threadId, userSsid, userMessage, data, language);
         break;
 
       case "ASK_DESSERTS":
-        await this.handleAskDesserts(threadId, userSsid, userMessage, data, language);
-        break;
-
       case "SHOW_DESSERTS_CAROUSEL":
         await this.handleDessertSelection(threadId, userSsid, userMessage, data, language);
         break;
@@ -122,7 +116,7 @@ export class OrderFlow {
       ? "🍕 Salamat! Simulan natin ang inyong order!\n\nPaano ninyo gusto mag-order?"
       : "🍕 Let's start po your order!\n\nHow gusto niyo mag-order?";
 
-    await SobotService.sendTextMessage(userSsid, message);
+    await FacebookService.sendTextMessage(userSsid, message);
     await createMessage({ senderSsid: userSsid, content: message, messageType: "text", isFromBot: true });
 
     const buttons = [
@@ -130,7 +124,7 @@ export class OrderFlow {
       { title: "🌐 Order Online", type: "web_url" as const, url: "https://shakeys-app.vercel.app/" }
     ];
 
-    await SobotService.sendMixedButtonMessage(userSsid, "Choose your ordering method:", "", buttons);
+    await FacebookService.sendMixedButtonMessage(userSsid, "Choose your ordering method:", "", buttons);
     await createMessage({ senderSsid: userSsid, content: "[Order Method Buttons]", messageType: "template", isFromBot: true });
   }
 
@@ -152,7 +146,7 @@ export class OrderFlow {
         ? "🍕 Sige po! Sabihin ninyo sa akin kung ano ang gusto ninyong i-order.\n\nPwede kayong magsabi ng:\n• \"Gusto ko ng pizza\"\n• \"Large pepperoni pizza\"\n• \"Chicken at mojos\""
         : "🍕 Sige po! Tell me what you want to order.\n\nPwede po like:\n• \"I want pizza\"\n• \"Large pepperoni pizza\"\n• \"Chicken and mojos\"";
 
-      await SobotService.sendTextMessage(userSsid, message);
+      await FacebookService.sendTextMessage(userSsid, message);
       await createMessage({ senderSsid: userSsid, content: message, messageType: "text", isFromBot: true });
     }
   }
@@ -183,7 +177,7 @@ export class OrderFlow {
         ? "Hindi ko mahanap iyan. Pwede bang subukan ninyong ipaliwanag ng iba? O i-type 'menu' para sa lahat ng options."
         : "Hindi ko po mahanap yan. Can you describe differently po? Or type 'menu' for all options.";
 
-      await SobotService.sendTextMessage(userSsid, message);
+      await FacebookService.sendTextMessage(userSsid, message);
       await createMessage({ senderSsid: userSsid, content: message, messageType: "text", isFromBot: true });
       return;
     }
@@ -217,7 +211,7 @@ export class OrderFlow {
       ? `🍕 Nakakita ako ng ${matchedProducts.length} masarap na options para sa inyo!`
       : `🍕 Found ${matchedProducts.length} masarap options for you po!`;
 
-    await SobotService.sendTextMessage(userSsid, message);
+    await FacebookService.sendTextMessage(userSsid, message);
     await createMessage({ senderSsid: userSsid, content: message, messageType: "text", isFromBot: true });
 
     const carouselItems = matchedProducts.slice(0, 6).map(product => ({
@@ -233,7 +227,7 @@ export class OrderFlow {
       ]
     }));
 
-    await SobotService.sendCarouselMessage(userSsid, carouselItems);
+    await FacebookService.sendCarouselMessage(userSsid, carouselItems);
     await createMessage({ senderSsid: userSsid, content: `[Product Carousel: ${matchedProducts.length} items]`, messageType: "template", isFromBot: true });
   }
 
@@ -260,7 +254,7 @@ export class OrderFlow {
       ? `🍕 Ito ang inyong mga options:\n\n${productList}\n\nI-type lang ang number para i-add sa cart!`
       : `🍕 Here po are your options:\n\n${productList}\n\nType lang po the number to add!`;
 
-    await SobotService.sendTextMessage(userSsid, message);
+    await FacebookService.sendTextMessage(userSsid, message);
     await createMessage({ senderSsid: userSsid, content: message, messageType: "text", isFromBot: true });
   }
 
@@ -297,7 +291,7 @@ export class OrderFlow {
         ? "Pumili po ng valid option sa listahan sa itaas."
         : "Please select po valid option from list above.";
 
-      await SobotService.sendTextMessage(userSsid, message);
+      await FacebookService.sendTextMessage(userSsid, message);
       await createMessage({ senderSsid: userSsid, content: message, messageType: "text", isFromBot: true });
       return;
     }
@@ -331,20 +325,19 @@ export class OrderFlow {
       ? `✅ Naidagdag sa cart!\n\n${cartDisplay}`
       : `✅ Added na po sa cart!\n\n${cartDisplay}`;
 
-    await SobotService.sendTextMessage(userSsid, message);
+    await FacebookService.sendTextMessage(userSsid, message);
     await createMessage({ senderSsid: userSsid, content: message, messageType: "text", isFromBot: true });
 
     // Move to drinks
-    await this.handleAskDrinks(threadId, userSsid, "", data, language);
+    await this.showDrinksQuestion(threadId, userSsid, data, language);
   }
 
   /**
-   * ASK_DRINKS: Offer drinks carousel
+   * ASK_DRINKS: Show drinks question with quick replies (called internally)
    */
-  private static async handleAskDrinks(
+  private static async showDrinksQuestion(
     threadId: string,
     userSsid: string,
-    userMessage: string,
     data: OrderFlowData,
     language: "en" | "tl" | "taglish"
   ): Promise<void> {
@@ -356,20 +349,20 @@ export class OrderFlow {
       ? "🥤 Paano po ang drinks para sa order?"
       : "🥤 How about drinks po to go with that?";
 
-    await SobotService.sendTextMessage(userSsid, message);
-    await createMessage({ senderSsid: userSsid, content: message, messageType: "text", isFromBot: true });
+    // Show typing indicator before message
+    await FacebookService.sendTypingIndicator(userSsid, 1500);
 
-    const buttons = [
-      { title: "Add Drinks", type: "postback" as const, payload: "show_drinks" },
-      { title: "Skip Drinks", type: "postback" as const, payload: "skip_drinks" }
+    const quickReplies = [
+      { content_type: "text" as const, title: "🥤 Add Drinks", payload: "show_drinks" },
+      { content_type: "text" as const, title: "⏭️ Skip", payload: "skip_drinks" }
     ];
 
-    await SobotService.sendMixedButtonMessage(userSsid, "Choose an option:", "", buttons);
-    await createMessage({ senderSsid: userSsid, content: "[Drinks Buttons]", messageType: "template", isFromBot: true });
+    await FacebookService.sendQuickReplies(userSsid, message, quickReplies);
+    await createMessage({ senderSsid: userSsid, content: message, messageType: "quick_reply", isFromBot: true });
   }
 
   /**
-   * Handle drinks selection
+   * Handle drinks selection - processes user input for drinks
    */
   private static async handleDrinkSelection(
     threadId: string,
@@ -378,6 +371,13 @@ export class OrderFlow {
     data: OrderFlowData,
     language: "en" | "tl" | "taglish"
   ): Promise<void> {
+    // First entry - show the drinks question
+    if (userMessage === "") {
+      await this.showDrinksQuestion(threadId, userSsid, data, language);
+      return;
+    }
+
+    // User clicked "Show Drinks"
     if (userMessage === "show_drinks") {
       const drinks = products.filter(p => p.category === "Drinks").slice(0, 6);
 
@@ -395,11 +395,23 @@ export class OrderFlow {
       }));
 
       await ConversationManager.updateFlowStep(threadId, "SHOW_DRINKS_CAROUSEL", data);
-      await SobotService.sendCarouselMessage(userSsid, carouselItems);
+
+      // Show typing indicator before carousel
+      await FacebookService.sendTypingIndicator(userSsid, 1500);
+
+      await FacebookService.sendCarouselMessage(userSsid, carouselItems);
       await createMessage({ senderSsid: userSsid, content: "[Drinks Carousel]", messageType: "template", isFromBot: true });
-    } else if (userMessage === "skip_drinks") {
-      await this.handleAskDesserts(threadId, userSsid, "", data, language);
-    } else if (userMessage.startsWith("add_drink_")) {
+      return;
+    }
+
+    // User clicked "Skip Drinks"
+    if (userMessage === "skip_drinks") {
+      await this.showDessertsQuestion(threadId, userSsid, data, language);
+      return;
+    }
+
+    // User selected a drink from carousel
+    if (userMessage.startsWith("add_drink_")) {
       const drinkId = parseInt(userMessage.replace("add_drink_", ""));
       const drink = products.find(p => p.id === drinkId);
       if (drink) {
@@ -410,18 +422,31 @@ export class OrderFlow {
           quantity: 1,
           category: "Drinks"
         });
-        await this.handleAskDesserts(threadId, userSsid, "", data, language);
+
+        const message = language === "en"
+          ? `✅ ${drink.name} added to cart!`
+          : language === "tl"
+          ? `✅ Naidagdag sa cart ang ${drink.name}!`
+          : `✅ ${drink.name} added na sa cart!`;
+
+        // Show typing indicator before confirmation
+        await FacebookService.sendTypingIndicator(userSsid, 1000);
+
+        await FacebookService.sendTextMessage(userSsid, message);
+        await createMessage({ senderSsid: userSsid, content: message, messageType: "text", isFromBot: true });
+
+        await this.showDessertsQuestion(threadId, userSsid, data, language);
       }
+      return;
     }
   }
 
   /**
-   * ASK_DESSERTS: Offer desserts carousel
+   * Show desserts question (called internally)
    */
-  private static async handleAskDesserts(
+  private static async showDessertsQuestion(
     threadId: string,
     userSsid: string,
-    userMessage: string,
     data: OrderFlowData,
     language: "en" | "tl" | "taglish"
   ): Promise<void> {
@@ -433,21 +458,21 @@ export class OrderFlow {
       ? "🍰 At paano naman ang dessert?"
       : "🍰 And how about dessert po?";
 
-    await SobotService.sendTextMessage(userSsid, message);
-    await createMessage({ senderSsid: userSsid, content: message, messageType: "text", isFromBot: true });
+    // Show typing indicator before message
+    await FacebookService.sendTypingIndicator(userSsid, 1500);
 
-    const buttons = [
-      { title: "Add Desserts", type: "postback" as const, payload: "show_desserts" },
-      { title: "Skip Desserts", type: "postback" as const, payload: "skip_desserts" },
-      { title: "Proceed to Checkout", type: "postback" as const, payload: "proceed_checkout" }
+    const quickReplies = [
+      { content_type: "text" as const, title: "🍰 Add Desserts", payload: "show_desserts" },
+      { content_type: "text" as const, title: "⏭️ Skip", payload: "skip_desserts" },
+      { content_type: "text" as const, title: "✅ Checkout", payload: "proceed_checkout" }
     ];
 
-    await SobotService.sendMixedButtonMessage(userSsid, "Choose an option:", "", buttons);
-    await createMessage({ senderSsid: userSsid, content: "[Desserts Buttons]", messageType: "template", isFromBot: true });
+    await FacebookService.sendQuickReplies(userSsid, message, quickReplies);
+    await createMessage({ senderSsid: userSsid, content: message, messageType: "quick_reply", isFromBot: true });
   }
 
   /**
-   * Handle dessert selection
+   * Handle dessert selection - processes user input for desserts
    */
   private static async handleDessertSelection(
     threadId: string,
@@ -456,6 +481,13 @@ export class OrderFlow {
     data: OrderFlowData,
     language: "en" | "tl" | "taglish"
   ): Promise<void> {
+    // First entry - show the desserts question
+    if (userMessage === "") {
+      await this.showDessertsQuestion(threadId, userSsid, data, language);
+      return;
+    }
+
+    // User clicked "Show Desserts"
     if (userMessage === "show_desserts") {
       const desserts = products.filter(p => p.category === "Desserts").slice(0, 6);
 
@@ -473,11 +505,23 @@ export class OrderFlow {
       }));
 
       await ConversationManager.updateFlowStep(threadId, "SHOW_DESSERTS_CAROUSEL", data);
-      await SobotService.sendCarouselMessage(userSsid, carouselItems);
+
+      // Show typing indicator before carousel
+      await FacebookService.sendTypingIndicator(userSsid, 1500);
+
+      await FacebookService.sendCarouselMessage(userSsid, carouselItems);
       await createMessage({ senderSsid: userSsid, content: "[Desserts Carousel]", messageType: "template", isFromBot: true });
-    } else if (userMessage === "skip_desserts" || userMessage === "proceed_checkout") {
+      return;
+    }
+
+    // User clicked "Skip Desserts" or "Proceed to Checkout"
+    if (userMessage === "skip_desserts" || userMessage === "proceed_checkout") {
       await this.handleCollectLocation(threadId, userSsid, "", data, language);
-    } else if (userMessage.startsWith("add_dessert_")) {
+      return;
+    }
+
+    // User selected a dessert from carousel
+    if (userMessage.startsWith("add_dessert_")) {
       const dessertId = parseInt(userMessage.replace("add_dessert_", ""));
       const dessert = products.find(p => p.id === dessertId);
       if (dessert) {
@@ -488,8 +532,22 @@ export class OrderFlow {
           quantity: 1,
           category: "Desserts"
         });
+
+        const message = language === "en"
+          ? `✅ ${dessert.name} added to cart!`
+          : language === "tl"
+          ? `✅ Naidagdag sa cart ang ${dessert.name}!`
+          : `✅ ${dessert.name} added na sa cart!`;
+
+        // Show typing indicator before confirmation
+        await FacebookService.sendTypingIndicator(userSsid, 1000);
+
+        await FacebookService.sendTextMessage(userSsid, message);
+        await createMessage({ senderSsid: userSsid, content: message, messageType: "text", isFromBot: true });
+
         await this.handleCollectLocation(threadId, userSsid, "", data, language);
       }
+      return;
     }
   }
 
@@ -512,7 +570,7 @@ export class OrderFlow {
         ? "📍 Salamat! Ibigay po ninyo ang inyong delivery address at phone number.\n\nHalimbawa:\n123 Main St, Makati City\n09171234567"
         : "📍 Great! Please provide po your delivery address and phone number.\n\nExample:\n123 Main St, Makati City\n09171234567";
 
-      await SobotService.sendTextMessage(userSsid, message);
+      await FacebookService.sendTextMessage(userSsid, message);
       await createMessage({ senderSsid: userSsid, content: message, messageType: "text", isFromBot: true });
       return;
     }
@@ -554,10 +612,10 @@ export class OrderFlow {
       ? `🎉 Perfect! Handa na ang inyong order!\n\n${cartDisplay}\n\n📍 I-deliver sa: ${data.location || 'Inyong address'}\n\nClick sa baba para kumpletuhin ang bayad:`
       : `🎉 Perfect! Ready na po your order!\n\n${cartDisplay}\n\n📍 Deliver to: ${data.location || 'Your address'}\n\nClick below para complete payment:`;
 
-    await SobotService.sendTextMessage(userSsid, message);
+    await FacebookService.sendTextMessage(userSsid, message);
     await createMessage({ senderSsid: userSsid, content: message, messageType: "text", isFromBot: true });
 
-    await SobotService.sendWebviewButton(userSsid, "Complete Your Order", "Pay Now", paymentLink);
+    await FacebookService.sendWebviewButton(userSsid, "Complete Your Order", "Pay Now", paymentLink);
     await createMessage({ senderSsid: userSsid, content: `[Payment Link: ${paymentLink}]`, messageType: "template", isFromBot: true });
 
     // End flow

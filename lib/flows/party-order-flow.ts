@@ -8,7 +8,7 @@
  * 3. FLOW_END
  */
 
-import { SobotService } from "../services/sobot-service";
+import { FacebookService } from "../services/facebook-service";
 import { ConversationManager } from "../services/conversation-manager";
 import { createMessage } from "../db-operations";
 
@@ -110,7 +110,7 @@ export class PartyOrderFlow {
     // Send intro message about party orders
     const introMessage = this.getIntroMessage(language);
 
-    await SobotService.sendTextMessage(userSsid, introMessage);
+    await FacebookService.sendTextMessage(userSsid, introMessage);
     await createMessage({
       senderSsid: userSsid,
       content: introMessage,
@@ -134,7 +134,7 @@ export class PartyOrderFlow {
 
     const buttonMessage = this.getButtonMessage(language);
 
-    await SobotService.sendMixedButtonMessage(userSsid, buttonMessage, "", buttons);
+    await FacebookService.sendMixedButtonMessage(userSsid, buttonMessage, "", buttons);
     await createMessage({
       senderSsid: userSsid,
       content: `Party order buttons sent`,
@@ -159,7 +159,7 @@ export class PartyOrderFlow {
 
     const packagesMessage = this.getPackagesMessage(language);
 
-    await SobotService.sendTextMessage(userSsid, packagesMessage);
+    await FacebookService.sendTextMessage(userSsid, packagesMessage);
     await createMessage({
       senderSsid: userSsid,
       content: packagesMessage,
@@ -186,7 +186,7 @@ export class PartyOrderFlow {
       ]
     }));
 
-    const result = await SobotService.sendCarouselMessage(userSsid, carouselItems);
+    const result = await FacebookService.sendCarouselMessage(userSsid, carouselItems);
 
     await createMessage({
       senderSsid: userSsid,
@@ -199,7 +199,7 @@ export class PartyOrderFlow {
       // Send follow-up message
       const followUpMessage = this.getFollowUpMessage(language);
 
-      await SobotService.sendTextMessage(userSsid, followUpMessage);
+      await FacebookService.sendTextMessage(userSsid, followUpMessage);
       await createMessage({
         senderSsid: userSsid,
         content: followUpMessage,
@@ -331,7 +331,7 @@ export class PartyOrderFlow {
       ? "Pasensya na! May problema ako sa pagpakita ng packages. Mangyaring tumawag sa " + CALL_NUMBER + " o bisitahin ang " + INQUIRY_URL + " para magtanong tungkol sa party orders."
       : "Oops! May problema po ako sa pagshow ng packages. Please call po sa " + CALL_NUMBER + " or visit " + INQUIRY_URL + " to inquire about party orders.";
 
-    await SobotService.sendTextMessage(userSsid, message);
+    await FacebookService.sendTextMessage(userSsid, message);
     await createMessage({
       senderSsid: userSsid,
       content: message,

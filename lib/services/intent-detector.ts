@@ -302,16 +302,25 @@ export class IntentDetector {
     const supercardKeywords = [
       "supercard",
       "super card",
-      "loyalty",
       "loyalty card",
-      "rewards",
-      "points",
-      "membership",
-      "member",
-      "card",
+      "rewards card",
+      "shakey's card",
+      "shakys card",
+      "membership card",
     ];
 
-    return supercardKeywords.some((keyword) => msg.includes(keyword));
+    // Check for specific supercard mentions
+    if (supercardKeywords.some((keyword) => msg.includes(keyword))) {
+      return true;
+    }
+
+    // Check for generic loyalty/rewards questions that mention shakey's
+    if ((msg.includes("loyalty") || msg.includes("rewards") || msg.includes("points") || msg.includes("membership")) &&
+        (msg.includes("shakey") || msg.includes("shakys"))) {
+      return true;
+    }
+
+    return false;
   }
 
   private static matchesFAQ(msg: string): boolean {

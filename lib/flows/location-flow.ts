@@ -9,7 +9,7 @@
  * 4. FLOW_END
  */
 
-import { SobotService } from "../services/sobot-service";
+import { FacebookService } from "../services/facebook-service";
 import { ConversationManager } from "../services/conversation-manager";
 import { createMessage } from "../db-operations";
 import locations from "../../locations.json";
@@ -77,21 +77,27 @@ export class LocationFlow {
     await ConversationManager.updateFlowStep(threadId, "SHOW_LOCATION_CAROUSEL", {});
 
     const message = language === "en"
-      ? "📍 Here are our Shakey's locations near you!"
+      ? "📍 I can help you find the nearest Shakey's branch! Would you like me to show you branches near you?"
       : language === "tl"
-      ? "📍 Narito ang aming mga Shakey's lokasyon malapit sa inyo!"
-      : "📍 Here po are our Shakey's locations near you!";
+      ? "📍 Makakatulong ako na hanapin ang pinakamalapit na Shakey's branch! Gusto niyo bang ipakita ko ang mga branch malapit sa inyo?"
+      : "📍 I can help you po find the nearest Shakey's branch! Would you like me po to show you branches near you?";
 
-    await SobotService.sendTextMessage(userSsid, message);
+    // Show typing indicator before message
+    await FacebookService.sendTypingIndicator(userSsid, 1500);
+
+    const quickReplies = [
+      { content_type: "text" as const, title: "✅ Yes, show me", payload: "show_locations" },
+      { content_type: "text" as const, title: "📞 Call instead", payload: "call_hotline" },
+      { content_type: "text" as const, title: "🌐 Visit website", payload: "visit_website" }
+    ];
+
+    await FacebookService.sendQuickReplies(userSsid, message, quickReplies);
     await createMessage({
       senderSsid: userSsid,
       content: message,
-      messageType: "text",
+      messageType: "quick_reply",
       isFromBot: true,
     });
-
-    // Show location carousel
-    await this.showLocationCarousel(threadId, userSsid, language);
   }
 
   /**
@@ -103,6 +109,9 @@ export class LocationFlow {
     language: "en" | "tl" | "taglish"
   ): Promise<void> {
     console.log("[LocationFlow] Showing location carousel...");
+
+    // Show typing indicator before carousel
+    await FacebookService.sendTypingIndicator(userSsid, 1500);
 
     const carouselItems = locations.map((location) => ({
       title: location.name,
@@ -117,7 +126,7 @@ export class LocationFlow {
       ],
     }));
 
-    const result = await SobotService.sendCarouselMessage(userSsid, carouselItems);
+    const result = await FacebookService.sendCarouselMessage(userSsid, carouselItems);
 
     if (result.success) {
       console.log("[LocationFlow] Location carousel sent successfully");
@@ -137,7 +146,7 @@ export class LocationFlow {
         ? "I-click ang 'Kunin Direksyon' para buksan ang Google Maps at pumunta sa inyong napiling lokasyon! 🗺️"
         : "Click 'Get Directions' para open Google Maps and navigate sa chosen location niyo! 🗺️";
 
-      await SobotService.sendTextMessage(userSsid, helpMessage);
+      await FacebookService.sendTextMessage(userSsid, helpMessage);
       await createMessage({
         senderSsid: userSsid,
         content: helpMessage,
@@ -165,6 +174,41 @@ export class LocationFlow {
     language: "en" | "tl" | "taglish"
   ): Promise<void> {
     console.log(`[LocationFlow] Handling location selection: ${userMessage}`);
+
+    // Handle quick reply responses
+    if (userMessage === "show_locations") {
+      // User wants to see locations - show carousel
+      await this.showLocationCarousel(threadId, userSsid, language);
+      return;
+    }
+
+    if (userMessage === "call_hotline") {
+      const message = language === "en"
+        ? "📞 You can call Shakey's hotline at 7777-7777 or Globe/TM #77-777 (toll-free). How else can I help you?"
+        : language === "tl"
+        ? "📞 Maaari ninyong tawagan ang Shakey's hotline sa 7777-7777 o Globe/TM #77-777 (libre). Ano pa ang maitutulong ko?"
+        : "📞 You can call po Shakey's hotline at 7777-7777 or Globe/TM #77-777 (toll-free). How else can I help you po?";
+
+      await FacebookService.sendTypingIndicator(userSsid, 1500);
+      await FacebookService.sendTextMessage(userSsid, message);
+      await createMessage({ senderSsid: userSsid, content: message, messageType: "text", isFromBot: true });
+      await ConversationManager.endFlow(threadId);
+      return;
+    }
+
+    if (userMessage === "visit_website") {
+      const message = language === "en"
+        ? "🌐 Visit our website at shakeyspizza.ph/stores to find all our locations! How else can I help you?"
+        : language === "tl"
+        ? "🌐 Bisitahin ang aming website sa shakeyspizza.ph/stores para makita ang lahat ng aming lokasyon! Ano pa ang maitutulong ko?"
+        : "🌐 Visit po our website at shakeyspizza.ph/stores to find all our locations! How else can I help you po?";
+
+      await FacebookService.sendTypingIndicator(userSsid, 1500);
+      await FacebookService.sendTextMessage(userSsid, message);
+      await createMessage({ senderSsid: userSsid, content: message, messageType: "text", isFromBot: true });
+      await ConversationManager.endFlow(threadId);
+      return;
+    }
 
     // Check if user is asking for directions or another location query
     const lowerMessage = userMessage.toLowerCase();
@@ -211,7 +255,7 @@ export class LocationFlow {
         ? `📍 Salamat! Narito kung paano pumunta sa ${selectedLocation.name}:`
         : `📍 Great po! Here's kung paano pumunta sa ${selectedLocation.name}:`;
 
-      await SobotService.sendTextMessage(userSsid, message);
+      await FacebookService.sendTextMessage(userSsid, message);
       await createMessage({
         senderSsid: userSsid,
         content: message,
@@ -220,7 +264,7 @@ export class LocationFlow {
       });
 
       // Send webview button for Google Maps
-      await SobotService.sendWebviewButton(
+      await FacebookService.sendWebviewButton(
         userSsid,
         `${selectedLocation.name}\n${selectedLocation.address}`,
         language === "en" ? "Open in Google Maps" : language === "tl" ? "Buksan sa Google Maps" : "Open sa Google Maps",
@@ -246,7 +290,7 @@ export class LocationFlow {
         ? "Hindi ko po naintindihan. Ipakita ko ulit ang aming mga lokasyon:"
         : "Hindi ko po naintindihan. Let me show ulit our locations:";
 
-      await SobotService.sendTextMessage(userSsid, message);
+      await FacebookService.sendTextMessage(userSsid, message);
       await createMessage({
         senderSsid: userSsid,
         content: message,
@@ -276,7 +320,7 @@ export class LocationFlow {
       ? "May iba pa ba akong matutulungan sa inyo? 😊"
       : "May iba pa po ba akong pwedeng tulungan? 😊";
 
-    await SobotService.sendTextMessage(userSsid, message);
+    await FacebookService.sendTextMessage(userSsid, message);
     await createMessage({
       senderSsid: userSsid,
       content: message,
@@ -301,7 +345,7 @@ export class LocationFlow {
       ? "Pasensya na! May problema ako sa pagpapakita ng aming mga lokasyon. Subukan muli o i-type ang 'live agent' para sa tao."
       : "Oops! May problema po ako sa pagshow ng locations. Please try ulit or type 'live agent' para sa human assistance.";
 
-    await SobotService.sendTextMessage(userSsid, message);
+    await FacebookService.sendTextMessage(userSsid, message);
     await createMessage({
       senderSsid: userSsid,
       content: message,

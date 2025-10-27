@@ -1,12 +1,13 @@
 import { ConversationManager, FlowType, Language } from "../services/conversation-manager";
 import { IntentDetector } from "../services/intent-detector";
-import { SobotService } from "../services/sobot-service";
-import { createMessage } from "../db-operations";
+import { FacebookService } from "../services/facebook-service";
+import { createMessage, getUserByPsid, createBotMessageWithTracking } from "../db-operations";
 import { ProductMatcher } from "../services/product-matcher";
 import { OrderFlow } from "./order-flow";
 import { LocationFlow } from "./location-flow";
 import { TrackingFlow } from "./tracking-flow";
 import { SupercardFlow } from "./supercard-flow";
+import { PromoFlow } from "./promo-flow";
 import { ComplaintFlow } from "./complaint-flow";
 import { PartyOrderFlow } from "./party-order-flow";
 import { FAQService } from "../services/faq-service";
@@ -78,19 +79,10 @@ export class FlowHandler {
       return;
     }
 
-    // Fast keyword detection for greetings (skip AI for simple cases)
-    const lowerMsg = userMessage.toLowerCase().trim();
-    if (/^(hi|hello|hey|kumusta|kamusta|musta|good morning|good afternoon|good evening)$/i.test(lowerMsg)) {
-      console.log(`[FlowHandler] Fast greeting detected`);
-      const language = await ConversationManager.updateLanguage(threadId, userMessage);
-      await this.handleGreetingOrUnknown(threadId, userSsid, "greeting", language);
-      return;
-    }
-
     // Get conversation history for context (reduced from 5 to 2 for speed)
     const history = await ConversationManager.getHistory(threadId, 2);
 
-    // Detect intent with AI
+    // ALWAYS detect intent with Gemini AI (no shortcuts)
     const intentResult = await IntentDetector.detect(userMessage, history);
     console.log(`[FlowHandler] Detected intent: ${intentResult.intent} (${intentResult.confidence})`);
     if (intentResult.reasoning) {
@@ -207,8 +199,16 @@ export class FlowHandler {
         );
         return; // SupercardFlow handles messaging internally
       case "promo":
-        response = await this.handlePromoFlow(userMessage, language);
-        break;
+        // Use comprehensive PromoFlow module
+        await PromoFlow.handlePromoFlow(
+          threadId,
+          userSsid,
+          userMessage,
+          await ConversationManager.getContext(threadId).then(c => c.flowStep),
+          await ConversationManager.getContext(threadId).then(c => c.flowData),
+          language
+        );
+        return; // PromoFlow handles messaging internally
       case "complaint":
         // Use comprehensive ComplaintFlow module
         await ComplaintFlow.handleComplaintFlow(
@@ -295,16 +295,6 @@ export class FlowHandler {
   }
 
   /**
-   * Promo Flow Handler
-   */
-  private static async handlePromoFlow(userMessage: string, language: Language): Promise<FlowResponse> {
-    return {
-      message: this.getLocalizedMessage("promo_response", language),
-      shouldEnd: true,
-    };
-  }
-
-  /**
    * Handle human request
    */
   private static async handleHumanRequest(threadId: string, userSsid: string, language: Language): Promise<void> {
@@ -323,9 +313,9 @@ export class FlowHandler {
     language: Language
   ): Promise<void> {
     if (intent === "greeting") {
-      // Send Zappy welcome message with buttons as per FLOWS-UPDATED.MD
+      // Send Zappy welcome message with personalization (Hey {firstName}!)
       const welcomeText = this.getLocalizedMessage("zappy_welcome", language);
-      await this.sendBotMessage(userSsid, welcomeText, threadId);
+      await this.sendBotMessage(userSsid, welcomeText, threadId, true); // personalize=true
 
       // Send buttons after welcome message
       const buttons = [
@@ -347,19 +337,31 @@ export class FlowHandler {
   }
 
   /**
-   * Send bot message
+   * Send bot message with optional personalization
    */
-  private static async sendBotMessage(userSsid: string, message: string, threadId: string): Promise<void> {
-    const result = await SobotService.sendTextMessage(userSsid, message);
-    if (result.success) {
-      await createMessage({
-        senderSsid: userSsid,
-        content: message,
-        messageType: "text",
-        isFromBot: true,
-        metadata: { messageId: result.messageId },
-      });
+  private static async sendBotMessage(userSsid: string, message: string, threadId: string, personalize: boolean = false): Promise<void> {
+    let finalMessage = message;
+
+    // Personalize message if requested
+    if (personalize) {
+      const user = await getUserByPsid(userSsid);
+      if (user && user.firstName) {
+        finalMessage = `Hey ${user.firstName}! ${message}`;
+      }
     }
+
+    // Create message with tracking first
+    const trackingMessageId = await createBotMessageWithTracking(
+      userSsid,
+      finalMessage,
+      "text"
+    );
+
+    // Show typing indicator before sending message
+    await FacebookService.sendTypingIndicator(userSsid, 1500);
+
+    // Send message with tracking ID
+    await FacebookService.sendTextMessage(userSsid, finalMessage, trackingMessageId);
   }
 
   /**
@@ -371,36 +373,36 @@ export class FlowHandler {
     buttons: Array<{ title: string; type: "postback" | "web_url"; payload?: string; url?: string }>,
     threadId: string
   ): Promise<void> {
-    // Send text message first
-    const textResult = await SobotService.sendTextMessage(userSsid, message);
-    if (textResult.success) {
-      await createMessage({
-        senderSsid: userSsid,
-        content: message,
-        messageType: "text",
-        isFromBot: true,
-        metadata: { messageId: textResult.messageId },
-      });
-    }
+    // Create text message with tracking first
+    const textTrackingId = await createBotMessageWithTracking(
+      userSsid,
+      message,
+      "text"
+    );
 
-    // Wait 500ms for better UX
-    await new Promise(resolve => setTimeout(resolve, 500));
+    // Show typing indicator before first message
+    await FacebookService.sendTypingIndicator(userSsid, 1500);
 
-    // Then send buttons separately
+    // Send text message with tracking
+    await FacebookService.sendTextMessage(userSsid, message, textTrackingId);
+
+    // Show typing indicator before buttons
+    await FacebookService.sendTypingIndicator(userSsid, 800);
+
+    // Create button message with tracking
     const buttonMessage = buttons.length === 1 && buttons[0].type === "web_url"
       ? "Click the button below:"
       : "Choose an option:";
 
-    const buttonResult = await SobotService.sendMixedButtonMessage(userSsid, buttonMessage, "", buttons);
-    if (buttonResult.success) {
-      await createMessage({
-        senderSsid: userSsid,
-        content: `[Buttons: ${buttons.map(b => b.title).join(", ")}]`,
-        messageType: "template",
-        isFromBot: true,
-        metadata: { messageId: buttonResult.messageId, buttons },
-      });
-    }
+    const buttonTrackingId = await createBotMessageWithTracking(
+      userSsid,
+      `[Buttons: ${buttons.map(b => b.title).join(", ")}]`,
+      "template",
+      { buttons }
+    );
+
+    // Send buttons with tracking
+    await FacebookService.sendMixedButtonMessage(userSsid, buttonMessage, "", buttons, buttonTrackingId);
   }
 
   /**

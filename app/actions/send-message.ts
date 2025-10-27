@@ -1,12 +1,12 @@
 "use server";
 
-import { SobotService } from "@/lib/services/sobot-service";
+import { FacebookService } from "@/lib/services/facebook-service";
 import { createBotMessage } from "@/lib/db-operations";
 import { revalidatePath } from "next/cache";
 
 export async function sendMessage(recipientId: string, message: string, threadId: string) {
   try {
-    const result = await SobotService.sendTextMessage(recipientId, message);
+    const result = await FacebookService.sendTextMessage(recipientId, message);
 
     if (result.success) {
       // Store the sent message in the database as a bot message

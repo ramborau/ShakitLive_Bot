@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import { SobotService } from "@/lib/services/sobot-service";
+import { FacebookService } from "@/lib/services/facebook-service";
 
 const prisma = new PrismaClient();
 
@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Send the message via Messenger API
-    await SobotService.sendTextMessage(recipientSsid, messageText);
+    await FacebookService.sendTextMessage(recipientSsid, messageText);
 
     // Save the message to database
     await prisma.message.create({

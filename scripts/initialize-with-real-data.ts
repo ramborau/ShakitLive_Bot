@@ -1,16 +1,16 @@
 import "dotenv/config";
 import { prisma } from "../lib/prisma";
-import { MessengerPeopleService } from "../lib/services/messengerpeople-service";
-import { SobotService } from "../lib/services/sobot-service";
+import { FacebookProfileService } from "../lib/services/facebook-profile-service";
+import { FacebookService } from "../lib/services/facebook-service";
 
 const RECIPIENT_SSID = "24614877841461856";
 
 async function initializeWithRealData() {
   console.log("🚀 Starting database initialization with real user data...\n");
 
-  // Step 1: Fetch real user profile from MessengerPeople API
-  console.log("1️⃣  Fetching user profile from MessengerPeople API...");
-  const userProfile = await MessengerPeopleService.getUserProfile(RECIPIENT_SSID);
+  // Step 1: Fetch real user profile from Facebook Graph API
+  console.log("1️⃣  Fetching user profile from Facebook Graph API...");
+  const userProfile = await FacebookProfileService.getUserProfile(RECIPIENT_SSID);
 
   let userData: {
     firstName: string;
@@ -67,21 +67,21 @@ async function initializeWithRealData() {
   console.log(`✅ Thread created with ID: ${thread.id}`);
   console.log();
 
-  // Step 4: Send bot messages via Sobot API
+  // Step 4: Send bot messages via Facebook API
   const botMessages = [
     "Hi! Welcome to ShakeIT. How can I help you today?",
     "Feel free to ask me anything about your orders or our services.",
     "I'm here to assist you 24/7! 😊",
   ];
 
-  console.log("4️⃣  Sending bot messages via Sobot API...");
+  console.log("4️⃣  Sending bot messages via Facebook API...");
 
   for (let i = 0; i < botMessages.length; i++) {
     const messageContent = botMessages[i];
     console.log(`   Sending message ${i + 1}/${botMessages.length}: "${messageContent}"`);
 
-    // Send via Sobot API
-    const result = await SobotService.sendTextMessage(RECIPIENT_SSID, messageContent);
+    // Send via Facebook API
+    const result = await FacebookService.sendTextMessage(RECIPIENT_SSID, messageContent);
 
     if (result.success) {
       console.log(`   ✅ Sent successfully (Message ID: ${result.messageId})`);

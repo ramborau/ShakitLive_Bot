@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createMessage } from "@/lib/db-operations";
+import { createMessage, createBotMessage } from "@/lib/db-operations";
 import { revalidatePath } from "next/cache";
 import { FlowHandler } from "@/lib/flows/flow-handler";
 import { findOrCreateThread } from "@/lib/db-operations";
+import { ConversationManager } from "@/lib/services/conversation-manager";
+import { FacebookService } from "@/lib/services/facebook-service";
+import { InactivityTimerService } from "@/lib/services/inactivity-timer";
 
 // Verify token (hard-coded as specified)
 const VERIFY_TOKEN = "ShakeyBot2025";
@@ -193,6 +196,40 @@ async function handleMessagingEvent(event: GenericMessage): Promise<void> {
 
       console.log("[Generic Webhook] Message saved to database");
 
+      // Check for "clear" command - override all flows and reset all data
+      if (event.message.text.trim().toLowerCase() === "clear") {
+        console.log("[Generic Webhook] Clear command detected - overriding all flows");
+
+        try {
+          // Get current language preference before clearing
+          const context = await ConversationManager.getContext(thread.id);
+          const language = context.language || "en";
+
+          // Clear conversation history and reset all flow state
+          await ConversationManager.clearHistory(thread.id);
+
+          // Send confirmation message in user's language
+          const confirmationMessages = {
+            en: "✅ Conversation cleared! All flows stopped and data reset. Starting fresh. How can I help you today?",
+            tl: "✅ Na-clear na po ang conversation! Lahat ng flows ay na-stop at na-reset ang data. Magsisimula tayo from scratch. Paano ko kayo matutulungan ngayon?",
+            taglish: "✅ Conversation cleared na po! All flows stopped and data reset. Fresh start tayo. How can I help you?",
+          };
+
+          const confirmationText = confirmationMessages[language];
+
+          await FacebookService.sendTextMessage(senderSsid, confirmationText);
+          await createBotMessage(senderSsid, confirmationText);
+
+          console.log("[Generic Webhook] Conversation cleared, all flows stopped, data reset, and confirmation sent");
+        } catch (error) {
+          console.error("[Generic Webhook] Error clearing conversation:", error);
+        }
+
+        // Revalidate the home page to show cleared state
+        revalidatePath("/");
+        return; // Don't process further - clear command overrides all flows
+      }
+
       // Process message through flow system
       try {
         await FlowHandler.processMessage(thread.id, senderSsid, event.message.text);
@@ -200,6 +237,9 @@ async function handleMessagingEvent(event: GenericMessage): Promise<void> {
       } catch (error) {
         console.error("[Generic Webhook] Error processing flow:", error);
       }
+
+      // Reset inactivity timer after processing
+      InactivityTimerService.resetTimer(thread.id, senderSsid);
 
       // Revalidate the home page
       revalidatePath("/");
@@ -231,6 +271,9 @@ async function handleMessagingEvent(event: GenericMessage): Promise<void> {
       } catch (error) {
         console.error("[Generic Webhook] Error processing postback:", error);
       }
+
+      // Reset inactivity timer after processing button click
+      InactivityTimerService.resetTimer(thread.id, senderSsid);
 
       // Revalidate the home page
       revalidatePath("/");

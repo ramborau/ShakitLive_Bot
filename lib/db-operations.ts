@@ -1,5 +1,5 @@
 import { prisma } from "./prisma";
-import { MessengerPeopleService } from "./services/messengerpeople-service";
+import { FacebookProfileService } from "./services/facebook-profile-service";
 
 export interface CreateMessageInput {
   senderSsid: string;
@@ -11,26 +11,29 @@ export interface CreateMessageInput {
 
 /**
  * Upsert a user with enrichment
+ * Now also refreshes profile data on every call (not just creation)
  */
 export async function upsertUser(ssid: string) {
-  // Check if user exists
-  let user = await prisma.user.findUnique({ where: { ssid } });
+  // Enrich user data from Facebook Graph API
+  const enrichedData = await FacebookProfileService.enrichUser(ssid);
 
-  if (!user) {
-    // Enrich user data
-    const enrichedData = await MessengerPeopleService.enrichUser(ssid);
+  // Use Prisma's upsert to avoid race conditions
+  const user = await prisma.user.upsert({
+    where: { ssid },
+    update: {
+      firstName: enrichedData.firstName,
+      lastName: enrichedData.lastName,
+      profilePic: enrichedData.profilePic,
+    },
+    create: {
+      ssid,
+      firstName: enrichedData.firstName,
+      lastName: enrichedData.lastName,
+      profilePic: enrichedData.profilePic,
+    },
+  });
 
-    user = await prisma.user.create({
-      data: {
-        ssid,
-        firstName: enrichedData.firstName,
-        lastName: enrichedData.lastName,
-        profilePic: enrichedData.profilePic,
-      },
-    });
-
-    console.log(`[DB] Created new user: ${user.firstName} ${user.lastName}`);
-  }
+  console.log(`[DB] Upserted user: ${user.firstName} ${user.lastName} (${ssid})`);
 
   return user;
 }
@@ -215,4 +218,114 @@ export async function getThreadById(threadId: string) {
   });
 
   return thread;
+}
+
+/**
+ * Get user by PSID (Page-Scoped ID)
+ */
+export async function getUserByPsid(psid: string) {
+  const user = await prisma.user.findUnique({
+    where: { ssid: psid },
+  });
+
+  return user;
+}
+
+/**
+ * Update message delivery status when bot attempts to send
+ */
+export async function updateMessageDeliveryStatus(
+  messageId: string,
+  status: "pending" | "sent" | "delivered" | "failed",
+  details?: {
+    facebookMessageId?: string;
+    failureReason?: string;
+    failureDetails?: any;
+  }
+) {
+  try {
+    const updateData: any = {
+      deliveryStatus: status,
+      attemptCount: { increment: 1 },
+      lastAttemptAt: new Date(),
+    };
+
+    if (status === "sent" || status === "delivered") {
+      updateData.deliveredAt = new Date();
+      if (details?.facebookMessageId) {
+        updateData.facebookMessageId = details.facebookMessageId;
+      }
+    }
+
+    if (status === "failed") {
+      if (details?.failureReason) {
+        updateData.failureReason = details.failureReason;
+      }
+      if (details?.failureDetails) {
+        updateData.failureDetails = JSON.stringify(details.failureDetails);
+      }
+    }
+
+    const message = await prisma.message.update({
+      where: { id: messageId },
+      data: updateData,
+    });
+
+    console.log(`[DB] Updated message ${messageId} status to ${status}`);
+    return message;
+  } catch (error) {
+    console.error(`[DB] Failed to update message delivery status:`, error);
+    throw error;
+  }
+}
+
+/**
+ * Create a bot message with delivery tracking
+ * Returns the message ID for tracking
+ */
+export async function createBotMessageWithTracking(
+  senderSsid: string,
+  content: string,
+  messageType: string = "text",
+  metadata?: any
+): Promise<string> {
+  const thread = await findOrCreateThread(senderSsid);
+
+  const message = await prisma.message.create({
+    data: {
+      threadId: thread.id,
+      senderSsid,
+      content,
+      messageType,
+      isFromBot: true,
+      deliveryStatus: "pending",
+      attemptCount: 0,
+      metadata: metadata ? JSON.stringify(metadata) : undefined,
+    },
+  });
+
+  console.log(`[DB] Created bot message ${message.id} for tracking`);
+  return message.id;
+}
+
+/**
+ * Get failed messages for debugging
+ */
+export async function getFailedMessages(limit: number = 50) {
+  const messages = await prisma.message.findMany({
+    where: {
+      isFromBot: true,
+      deliveryStatus: "failed",
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    take: limit,
+    include: {
+      sender: true,
+      thread: true,
+    },
+  });
+
+  return messages;
 }

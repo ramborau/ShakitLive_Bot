@@ -9,7 +9,7 @@
  * 4. FLOW_END
  */
 
-import { SobotService } from "../services/sobot-service";
+import { FacebookService } from "../services/facebook-service";
 import { ConversationManager } from "../services/conversation-manager";
 import { createMessage } from "../db-operations";
 import { FAQService } from "../services/faq-service";
@@ -77,7 +77,7 @@ export class SupercardFlow {
       ? "🔍 Hanapin ko po ang impormasyon tungkol sa Supercard..."
       : "🔍 Let me find po info about Supercard for you...";
 
-    await SobotService.sendTextMessage(userSsid, thinkingMessage);
+    await FacebookService.sendTextMessage(userSsid, thinkingMessage);
     await createMessage({
       senderSsid: userSsid,
       content: thinkingMessage,
@@ -161,7 +161,7 @@ export class SupercardFlow {
   ): Promise<void> {
     console.log("[SupercardFlow] Showing FAQ answer");
 
-    await SobotService.sendTextMessage(userSsid, answer);
+    await FacebookService.sendTextMessage(userSsid, answer);
     await createMessage({
       senderSsid: userSsid,
       content: answer,
@@ -205,78 +205,132 @@ export class SupercardFlow {
   }
 
   /**
-   * Show GET CARD button with webview
+   * Show GET CARD button with beautiful coupon templates
    */
   private static async showOfferCard(
     threadId: string,
     userSsid: string,
     language: "en" | "tl" | "taglish"
   ): Promise<void> {
-    console.log("[SupercardFlow] Showing GET CARD offer");
-
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://shakeys-app.vercel.app";
+    console.log("[SupercardFlow] Showing GET CARD offer with beautiful coupons");
 
     // Card URLs as specified
     const goldCardUrl = "https://shakeys-app.vercel.app/card#gold";
     const classicCardUrl = "https://shakeys-app.vercel.app/card#classic";
 
-    // Card images from public folder
-    const goldCardImage = `${baseUrl}/goldcard.png`;
-    const classicCardImage = `${baseUrl}/classiccard.png`;
+    // Facebook attachment IDs for uploaded images (permanent storage)
+    const goldCardAttachmentId = "1882177566051424";
+    const classicCardAttachmentId = "1060843276051770";
 
-    const message = language === "en"
-      ? "🎴 Ready to unlock exclusive rewards?"
+    const preMessage = language === "en"
+      ? "🎴 Ready to unlock exclusive rewards? Here are your options!"
       : language === "tl"
-      ? "🎴 Handa na ba kayong mag-unlock ng exclusive rewards?"
-      : "🎴 Ready na po ba kayo to unlock exclusive rewards?";
+      ? "🎴 Handa na ba kayong mag-unlock ng exclusive rewards? Eto po ang mga options!"
+      : "🎴 Ready na po ba kayo to unlock exclusive rewards? Here are your options!";
 
-    // Send carousel with both Gold and Classic cards
-    const carouselItems = [
-      // Gold Card - First
-      {
-        title: "Supercard Gold",
-        subtitle: "Supercard Gold includes all your favorite Supercard Benefits and an upgraded Party Sized Welcome Pizza!\n\n₱ 999.00",
-        image_url: goldCardImage,
-        buttons: [
-          {
-            title: language === "en" ? "BUY NOW" : language === "tl" ? "BILHIN NGAYON" : "BUY NOW",
-            type: "web_url" as const,
-            url: goldCardUrl,
-          },
-        ],
-      },
-      // Classic Card - Second
-      {
-        title: "Supercard Classic",
-        subtitle: "Experience the benefit of the Supercard Classic. Enjoy even more discounts than before.\n\nONLY ₱ 699.00",
-        image_url: classicCardImage,
-        buttons: [
-          {
-            title: language === "en" ? "BUY NOW" : language === "tl" ? "BILHIN NGAYON" : "BUY NOW",
-            type: "web_url" as const,
-            url: classicCardUrl,
-          },
-        ],
-      },
-    ];
-
-    const result = await SobotService.sendCarouselMessage(userSsid, carouselItems);
-
+    await FacebookService.sendTextMessage(userSsid, preMessage);
     await createMessage({
       senderSsid: userSsid,
-      content: `Supercard carousel sent: Gold (₱999) and Classic (₱699)`,
-      messageType: "carousel",
+      content: preMessage,
+      messageType: "text",
       isFromBot: true,
     });
 
-    if (result.success) {
-      const followUpMessage = language === "en"
-        ? "👆 Choose your Supercard and click 'BUY NOW' to get started! 🎉"
-        : language === "tl"
-        ? "👆 Pumili ng inyong Supercard at i-click ang 'BILHIN NGAYON' para magsimula! 🎉"
-        : "👆 Choose po your Supercard and click 'BUY NOW' to get started! 🎉";
+    // Send Gold Card Coupon - Premium Option
+    const goldTitle = language === "en"
+      ? "🌟 Supercard Gold - Premium Benefits"
+      : language === "tl"
+      ? "🌟 Supercard Gold - Premium na Benepisyo"
+      : "🌟 Supercard Gold - Premium Benefits";
 
-      await SobotService.sendTextMessage(userSsid, followUpMessage);
+    const goldSubtitle = language === "en"
+      ? "Upgrade your experience! Includes Party Sized Welcome Pizza + all Supercard benefits. Limited time offer!"
+      : language === "tl"
+      ? "I-upgrade ang inyong experience! May kasamang Party Sized Welcome Pizza + lahat ng Supercard benefits. Limited time offer!"
+      : "Upgrade po your experience! May kasama Party Sized Welcome Pizza + all Supercard benefits. Limited time offer!";
+
+    const goldButtonTitle = language === "en" ? "GET GOLD CARD NOW" : language === "tl" ? "KUNIN ANG GOLD CARD" : "GET GOLD CARD NOW";
+
+    const goldCouponPreMessage = language === "en"
+      ? "🎉 Premium deal just for you!"
+      : language === "tl"
+      ? "🎉 Premium deal para sa inyo!"
+      : "🎉 Premium deal just for you po!";
+
+    const goldResult = await FacebookService.sendCouponTemplate(
+      userSsid,
+      goldTitle,
+      "GOLD999",
+      {
+        subtitle: goldSubtitle,
+        coupon_url: goldCardUrl,
+        coupon_url_button_title: goldButtonTitle,
+        coupon_pre_message: goldCouponPreMessage,
+        attachment_id: goldCardAttachmentId,
+        payload: "supercard_gold_999",
+      }
+    );
+
+    await createMessage({
+      senderSsid: userSsid,
+      content: `Supercard Gold coupon sent (₱999)`,
+      messageType: "coupon",
+      isFromBot: true,
+    });
+
+    // Small delay for better UX
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    // Send Classic Card Coupon - Best Value Option
+    const classicTitle = language === "en"
+      ? "💳 Supercard Classic - Best Value"
+      : language === "tl"
+      ? "💳 Supercard Classic - Pinakamahusay na Halaga"
+      : "💳 Supercard Classic - Best Value";
+
+    const classicSubtitle = language === "en"
+      ? "Start saving today! Enjoy amazing discounts, exclusive promos, and special perks. Great value for everyone!"
+      : language === "tl"
+      ? "Magsimula ng pag-save ngayon! Tamasahin ang mga diskwento, exclusive promos, at special perks. Sulit na sulit!"
+      : "Start saving ngayon! Enjoy amazing discounts, exclusive promos, and special perks. Great value para sa lahat!";
+
+    const classicButtonTitle = language === "en" ? "GET CLASSIC CARD NOW" : language === "tl" ? "KUNIN ANG CLASSIC CARD" : "GET CLASSIC CARD NOW";
+
+    const classicCouponPreMessage = language === "en"
+      ? "💰 Amazing value offer!"
+      : language === "tl"
+      ? "💰 Sulit na sulit na offer!"
+      : "💰 Amazing value offer po!";
+
+    const classicResult = await FacebookService.sendCouponTemplate(
+      userSsid,
+      classicTitle,
+      "CLASSIC699",
+      {
+        subtitle: classicSubtitle,
+        coupon_url: classicCardUrl,
+        coupon_url_button_title: classicButtonTitle,
+        coupon_pre_message: classicCouponPreMessage,
+        attachment_id: classicCardAttachmentId,
+        payload: "supercard_classic_699",
+      }
+    );
+
+    await createMessage({
+      senderSsid: userSsid,
+      content: `Supercard Classic coupon sent (₱699)`,
+      messageType: "coupon",
+      isFromBot: true,
+    });
+
+    if (goldResult.success || classicResult.success) {
+      const followUpMessage = language === "en"
+        ? "✨ Click on your preferred card to get started! Both cards offer amazing benefits! 🎉"
+        : language === "tl"
+        ? "✨ I-click ang gusto ninyong card para magsimula! Parehong may kahanga-hangang benepisyo! 🎉"
+        : "✨ Click po your preferred card to get started! Both cards offer amazing benefits! 🎉";
+
+      await FacebookService.sendTextMessage(userSsid, followUpMessage);
       await createMessage({
         senderSsid: userSsid,
         content: followUpMessage,
@@ -286,10 +340,10 @@ export class SupercardFlow {
 
       // End flow
       await ConversationManager.endFlow(threadId);
-      console.log("[SupercardFlow] Flow completed with GET CARD offer");
+      console.log("[SupercardFlow] Flow completed with beautiful coupon offers");
     } else {
-      // If carousel fails, try webview button for Gold card
-      console.warn("[SupercardFlow] Carousel failed, falling back to webview button");
+      // If both coupons fail, fallback to webview button
+      console.warn("[SupercardFlow] Coupons failed, falling back to webview button");
 
       const buttonText = language === "en"
         ? "Choose your Shakey's Supercard (Gold ₱999 or Classic ₱699)"
@@ -299,7 +353,7 @@ export class SupercardFlow {
 
       const buttonTitle = language === "en" ? "VIEW CARDS" : language === "tl" ? "TINGNAN ANG MGA CARD" : "VIEW CARDS";
 
-      await SobotService.sendWebviewButton(userSsid, buttonText, buttonTitle, goldCardUrl, "full");
+      await FacebookService.sendWebviewButton(userSsid, buttonText, buttonTitle, goldCardUrl, "full");
 
       await createMessage({
         senderSsid: userSsid,
@@ -328,7 +382,7 @@ export class SupercardFlow {
       ? "Pasensya na! May problema ako sa pag-access ng Supercard information. Subukan muli o tawagan ang aming hotline."
       : "Oops! May problema po ako sa pag-access ng Supercard info. Please try ulit or tawagan our hotline.";
 
-    await SobotService.sendTextMessage(userSsid, message);
+    await FacebookService.sendTextMessage(userSsid, message);
     await createMessage({
       senderSsid: userSsid,
       content: message,

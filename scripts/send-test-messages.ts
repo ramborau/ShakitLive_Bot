@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { SobotService } from "../lib/services/sobot-service";
+import { FacebookService } from "../lib/services/facebook-service";
 
 async function sendTestMessages() {
   const recipientId = "24614877841461856"; // Test SSID - working recipient
@@ -9,7 +9,7 @@ async function sendTestMessages() {
 
   // Send first message
   console.log("1. Sending first message...");
-  const result1 = await SobotService.sendTextMessage(
+  const result1 = await FacebookService.sendTextMessage(
     recipientId,
     "Hi Rahul! Thanks for reaching out. I can help you with your order."
   );
@@ -26,7 +26,7 @@ async function sendTestMessages() {
 
   // Send second message
   console.log("\n2. Sending second message...");
-  const result2 = await SobotService.sendTextMessage(
+  const result2 = await FacebookService.sendTextMessage(
     recipientId,
     "Could you please provide your order number so I can look it up for you?"
   );

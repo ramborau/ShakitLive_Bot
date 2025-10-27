@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { SobotService } from "../lib/services/sobot-service";
+import { FacebookService } from "../lib/services/facebook-service";
 import { prisma } from "../lib/prisma";
 
 const RECIPIENT_SSID = "24614877841461856";
@@ -40,9 +40,9 @@ async function sendTemplateMessage() {
 
   console.log("📤 Sending template message to:", RECIPIENT_SSID);
 
-  const result = await SobotService.sendTemplateMessage(
+  const result = await FacebookService.sendGenericTemplate(
     RECIPIENT_SSID,
-    templatePayload
+    templatePayload.elements
   );
 
   if (result.success) {
