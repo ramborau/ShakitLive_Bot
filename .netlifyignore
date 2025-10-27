@@ -1,0 +1,11 @@
+node_modules
+.next
+.env.local
+.env*.local
+ordermenu
+scripts
+*.db
+*.db-journal
+.vercel
+vercel.json
+.vercelignore
