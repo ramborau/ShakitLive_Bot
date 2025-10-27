@@ -16,7 +16,17 @@ if (!process.env.NETLIFY && typeof WebSocket === "undefined") {
 function createPrismaClient() {
   if (process.env.NODE_ENV === "production") {
     // Production: Use Neon with connection pooling
-    const connectionString = `${process.env.DATABASE_URL}`;
+    const connectionString = process.env.DATABASE_URL;
+
+    if (!connectionString) {
+      console.error("[Prisma] DATABASE_URL environment variable is not set!");
+      throw new Error("DATABASE_URL environment variable is required in production");
+    }
+
+    console.log("[Prisma] Creating production client with Neon adapter");
+    console.log("[Prisma] Connection string present:", !!connectionString);
+    console.log("[Prisma] Connection string starts with:", connectionString.substring(0, 20));
+
     const pool = new Pool({ connectionString });
     const adapter = new PrismaNeon(pool);
 
