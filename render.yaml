@@ -1,0 +1,34 @@
+databases:
+  - name: shakitlive-bot-db
+    databaseName: shakitlive_bot
+    user: shakitlive_user
+    plan: free
+    region: singapore
+    ipAllowList: []
+
+services:
+  - type: web
+    name: shakitlive-bot
+    runtime: node
+    plan: free
+    region: singapore
+    branch: main
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npx prisma migrate deploy && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: shakitlive-bot-db
+          property: connectionString
+      - key: FACEBOOK_PAGE_ID
+        value: 759563007234526
+      - key: FACEBOOK_PAGE_ACCESS_TOKEN
+        sync: false
+      - key: FACEBOOK_VERIFY_TOKEN
+        value: ShakeyBot2025
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: TEST_RECIPIENT_ID
+        value: 24614877841461856
